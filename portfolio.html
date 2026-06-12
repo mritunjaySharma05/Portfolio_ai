@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mritunjay Sharma | AI/ML Engineer & Researcher</title>
+  <meta name="description" content="Portfolio of Mritunjay Sharma — AI/ML Engineer, Deep Learning Researcher, and RAG systems builder from India.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F5FF'%3E%3Cpath d='M12 2L2 22h20L12 2zm0 4l6.5 13h-13L12 6z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+
+<!-- ── SVG ICON SPRITES ──────────────────────────────────── -->
+<svg style="display:none">
+  <symbol id="i-github" viewBox="0 0 24 24">
+    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+  </symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24">
+    <path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zm-11 19H5V8h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/>
+  </symbol>
+  <symbol id="i-twitter" viewBox="0 0 24 24">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </symbol>
+  <symbol id="i-email" viewBox="0 0 24 24">
+    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+  </symbol>
+  <symbol id="i-download" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+  </symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M19 12l-7 7-7-7"/>
+  </symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+  </symbol>
+  <symbol id="i-external" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+  </symbol>
+  <symbol id="i-paper" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+  </symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 10v6M2 10l10-5 10 5-10 5zM6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/>
+  </symbol>
+  <symbol id="i-terminal" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 17l6-6-6-6M12 19h8"/>
+  </symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4.5 16.5c-1.5 1.26-2 3.5-2 3.5s2.24-1 3.5-2M12 2C6 2 2 6 2 12c0 2 1 3.5 2 4.5l8-8 4.5 4.5-8 8c1 1 2.5 2 4.5 2 6 0 10-4 10-10 0-4-3-7-7-7zM9 15l-3 3M15 9l3-3"/>
+  </symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zM16 2v4M8 2v4M3 10h18"/>
+  </symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0c-2.5 0-4.5 4.5-4.5 10s2 10 4.5 10 4.5-4.5 4.5-10S14.5 2 12 2zM2 12h20"/>
+  </symbol>
+  <symbol id="i-play" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 3l14 9-14 9V3z"/>
+  </symbol>
+</svg>
+
+<!-- ── CURSOR ─────────────────────────────────────────────── -->
+<div class="cursor-dot"  id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- ── SHARE TOAST ───────────────────────────────────────── -->
+<div class="share-toast" id="share-toast">Link copied to clipboard</div>
+
+<!-- ── SCROLL PROGRESS ────────────────────────────────────── -->
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="scroll-progress"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════ -->
+<header class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="#home" class="nav-logo">MS</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="Mritunjay_Sharma_CV_2026.docx" download class="btn btn-outline">
+        <svg class="icon"><use href="#i-download"/></svg>Resume
+      </a>
+      <a href="#contact" class="btn btn-gradient">Hire Me</a>
+    </div>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-nav-overlay" id="mobile-menu" aria-hidden="true">
+  <ul class="mobile-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="mobile-ctas">
+    <a href="Mritunjay_Sharma_CV_2026.docx" download class="btn btn-outline" style="justify-content:center;">
+      <svg class="icon"><use href="#i-download"/></svg>Download Resume
+    </a>
+    <a href="#contact" class="btn btn-gradient" style="justify-content:center;">Hire Me</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 1 — HERO
+══════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-scanlines"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-content">
+    <div class="hero-pretitle">console.log("Hello, World 👋")</div>
+
+    <h1 class="hero-name">
+      <span class="hero-name-wrapper"><span id="hero-name-span">MRITUNJAY SHARMA</span></span>
+    </h1>
+
+    <div class="hero-roles">
+      <span class="typing-cursor" id="typing-el">AI/ML Engineer</span>
+    </div>
+
+    <p class="hero-desc">
+      Building intelligent systems that think, learn, and scale — from India to the world.
+    </p>
+
+    <div class="hero-badge-wrap">
+      <span class="status-badge">
+        <span class="status-dot"></span>
+        Open to Remote AI/ML Internships
+      </span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-gradient magnetic" data-glow="cyan">Explore My Work</a>
+      <a href="Mritunjay_Sharma_CV_2026.docx" download class="btn btn-outline magnetic" data-glow="violet">
+        <svg class="icon"><use href="#i-download"/></svg>Download Resume
+      </a>
+    </div>
+
+    <div class="hero-socials">
+      <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="social-btn magnetic" data-glow="cyan" aria-label="GitHub">
+        <svg class="icon"><use href="#i-github"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/mritunjay-sharma05/" target="_blank" rel="noopener" class="social-btn magnetic" data-glow="violet" aria-label="LinkedIn">
+        <svg class="icon"><use href="#i-linkedin"/></svg>
+      </a>
+      <a href="https://x.com/Mritunjay__05" target="_blank" rel="noopener" class="social-btn magnetic" data-glow="cyan" aria-label="Twitter/X">
+        <svg class="icon"><use href="#i-twitter"/></svg>
+      </a>
+      <a href="mailto:mritunjaysharma080505@gmail.com" class="social-btn magnetic" data-glow="violet" aria-label="Email">
+        <svg class="icon"><use href="#i-email"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <a href="#about" class="scroll-arrow" aria-label="Scroll to About">
+      <svg class="icon" style="width:28px;height:28px"><use href="#i-arrow-down"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 2 — ABOUT
+══════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-text reveal">
+        <span class="section-label">// about_me</span>
+        <h2 class="section-title gradient-text">Who Am I?</h2>
+
+        <p class="about-bio">
+          AI and Machine Learning engineer. 20 years old. From Himachal Pradesh, India. I am completing two degrees simultaneously — a BCA at MCM DAV College and an Associate of Science in AI at Saras AI Institute, USA. I build production-grade ML systems, publish research on agentic RAG architectures, and continuously push the boundaries of what intelligent systems can do.
+        </p>
+
+        <div class="stats-grid reveal" id="stats-grid">
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-target="4" data-suffix="+ Projects">0</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-target="94" data-suffix=".05% Acc.">0</div>
+            <div class="stat-label">Best Model Accuracy</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-target="2" data-suffix=" Degrees">0</div>
+            <div class="stat-label">Degrees Simultaneously</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-target="1" data-suffix=" Paper">0</div>
+            <div class="stat-label">Research Published</div>
+          </div>
+        </div>
+
+        <div class="skills-stack">
+          <div class="skill-group">
+            <div class="skill-group-title">🧠 Core ML</div>
+            <div class="skill-chips">
+              <span class="skill-chip">PyTorch</span><span class="skill-chip">TensorFlow</span>
+              <span class="skill-chip">Scikit-learn</span><span class="skill-chip">HuggingFace</span>
+              <span class="skill-chip">FAISS</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">💻 Programming</div>
+            <div class="skill-chips">
+              <span class="skill-chip">Python</span><span class="skill-chip">C/C++</span>
+              <span class="skill-chip">Flask</span><span class="skill-chip">FastAPI</span>
+              <span class="skill-chip">SQL</span><span class="skill-chip">HTML/CSS</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">🛠 Tools</div>
+            <div class="skill-chips">
+              <span class="skill-chip">Git</span><span class="skill-chip">Docker</span>
+              <span class="skill-chip">Streamlit</span><span class="skill-chip">Jupyter</span>
+              <span class="skill-chip">VS Code</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">🎯 Focus Areas</div>
+            <div class="skill-chips">
+              <span class="skill-chip">Computer Vision</span><span class="skill-chip">NLP</span>
+              <span class="skill-chip">RAG Systems</span><span class="skill-chip">Agentic AI</span>
+              <span class="skill-chip">Deep Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual reveal-right" style="transition-delay:200ms">
+        <div class="profile-orbit-wrap">
+          <div class="orbit-ring orbit-ring-1"></div>
+          <div class="orbit-ring orbit-ring-2"></div>
+          <div class="avatar-ring">
+            <div class="avatar-initials">MS</div>
+          </div>
+          <span class="float-badge">AI Engineer</span>
+          <span class="float-badge">Researcher</span>
+          <span class="float-badge">Builder</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 3 — INTRO VIDEO
+══════════════════════════════════════════════════════ -->
+<section class="video-section reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// meet_me</span>
+      <h2 class="section-title gradient-text">See Me in Action</h2>
+      <p>A 2-minute intro — who I am, what I build, and where I'm headed.</p>
+    </div>
+    <div class="video-wrap">
+      <div class="video-border">
+        <div class="video-inner">
+          <!-- Drop your video at assets/intro.mp4 -->
+          <video id="intro-video" controls>
+            <source src="assets/intro.mp4" type="video/mp4">
+          </video>
+          <div class="video-placeholder" id="video-placeholder" style="display:none">
+            <div class="play-icon">
+              <svg class="icon" style="width:32px;height:32px"><use href="#i-play"/></svg>
+            </div>
+            <p>Place your video at <code style="color:var(--accent-cyan)">assets/intro.mp4</code></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 4 — PROJECTS
+══════════════════════════════════════════════════════ -->
+<section id="projects" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// projects</span>
+      <h2 class="section-title gradient-text">What I've Built</h2>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="tab-btn active" data-filter="all">All</button>
+      <button class="tab-btn" data-filter="computer-vision">Computer Vision</button>
+      <button class="tab-btn" data-filter="nlp-rag">NLP / RAG</button>
+      <button class="tab-btn" data-filter="backend">Backend</button>
+      <button class="tab-btn" data-filter="tools">Tools</button>
+      <button class="tab-btn" data-filter="web">Web</button>
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <article class="glass-card project-card" id="proj-moksh" data-category="nlp-rag">
+        <div class="project-accent-bar accent-nlp"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">NLP / RAG</span></div>
+          <h3 class="project-title">Moksh AI v3.0 — Hybrid Agentic RAG System</h3>
+          <p class="project-desc">Agentic AI assistant that routes queries between FAISS vector memory, DuckDuckGo web search, or hybrid mode using temporal keyword detection and L2 confidence thresholds. Dual-LLM with Llama 3 + Gemini 2.0 Flash fallback. 92% on 25-question benchmark. Research published on Zenodo.</p>
+          <div class="project-tech">
+            <span class="tech-badge">Python</span><span class="tech-badge">Llama 3</span>
+            <span class="tech-badge">FAISS</span><span class="tech-badge">all-MiniLM</span>
+            <span class="tech-badge">Streamlit</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05/Moksh-AI-Assistant" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-moksh"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card project-card" id="proj-deepfake" data-category="computer-vision">
+        <div class="project-accent-bar accent-cv"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Computer Vision</span></div>
+          <h3 class="project-title">Deepfake Face Detector</h3>
+          <p class="project-desc">ResNet-50 binary classifier trained on 140,000 face images — 94.05% test accuracy and ROC-AUC 0.98. Mixed precision on RTX 4060. Streamlit interface for real-time image and video detection with under 12ms latency per frame.</p>
+          <div class="project-tech">
+            <span class="tech-badge">PyTorch</span><span class="tech-badge">ResNet-50</span><span class="tech-badge">OpenCV</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05/Deepfake-Face-Detector" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-deepfake"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card project-card" id="proj-churn" data-category="backend">
+        <div class="project-accent-bar accent-backend"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Backend</span></div>
+          <h3 class="project-title">Customer Churn Prediction API</h3>
+          <p class="project-desc">ML pipeline on IBM Telco dataset — ROC-AUC 0.836, 80% accuracy. Production Flask REST API with batch scoring, data drift detection, and date-stamped model versioning for monthly retraining.</p>
+          <div class="project-tech">
+            <span class="tech-badge">Flask</span><span class="tech-badge">Scikit-learn</span><span class="tech-badge">Pandas</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05/customer-churn-api" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-churn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card project-card" id="proj-fashionnet" data-category="computer-vision">
+        <div class="project-accent-bar accent-cv"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Computer Vision</span></div>
+          <h3 class="project-title">FashionNet</h3>
+          <p class="project-desc">3-block CNN from scratch in PyTorch for apparel classification. Pushed accuracy from 88.2% to 93.15% using BatchNorm, Cosine LR, dropout, and label smoothing over 20 epochs. Precision, Recall, F1 all at 0.93 across 10 classes.</p>
+          <div class="project-tech">
+            <span class="tech-badge">PyTorch</span><span class="tech-badge">CNN</span><span class="tech-badge">Python</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05/FashionNet" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-fashionnet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card project-card" id="proj-events" data-category="web">
+        <div class="project-accent-bar accent-web"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Web Development</span></div>
+          <h3 class="project-title">Event Management System</h3>
+          <p class="project-desc">Full-stack college event registry with admin panel, user dashboards, and CRUD operations for event registration. PHP backend with MySQL database.</p>
+          <div class="project-tech">
+            <span class="tech-badge">HTML/CSS</span><span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">PHP</span><span class="tech-badge">MySQL</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-events"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- F&O MARKET TREND ANALYZER — commented out, add back when ready
+      <article class="glass-card project-card" data-category="tools">
+        <div class="project-accent-bar accent-tools"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Tools / FinTech</span></div>
+          <h3 class="project-title">F&amp;O Market Trend Analyzer</h3>
+          <p class="project-desc">HMM regime detection engine with technical indicators on a dynamic real-time Streamlit dashboard.</p>
+          <div class="project-tech">
+            <span class="tech-badge">Python</span><span class="tech-badge">yfinance</span>
+            <span class="tech-badge">HMM</span><span class="tech-badge">Streamlit</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <a href="#" class="project-link" aria-label="Demo"><svg class="icon"><use href="#i-external"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+      -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 5 — RESEARCH
+══════════════════════════════════════════════════════ -->
+<section id="research" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// research</span>
+      <h2 class="section-title gradient-text">Research &amp; Publications</h2>
+    </div>
+    <div class="papers-grid">
+
+      <div class="glass-card paper-card">
+        <div class="paper-status-wrap">
+          <span class="paper-status status-published">
+            <span class="status-dot" style="background:var(--accent-green);box-shadow:0 0 8px var(--accent-green)"></span>
+            Published
+          </span>
+        </div>
+        <h3 class="paper-title">Hybrid RAG Architecture for Domain-Specific Conversational AI</h3>
+        <div class="paper-tags">
+          <span class="paper-tag">#NLP</span><span class="paper-tag">#RAG</span>
+          <span class="paper-tag">#DenseRetrieval</span><span class="paper-tag">#AgenticSearch</span>
+        </div>
+        <p class="paper-abstract">Explores combining dense embeddings with structured agentic web search to build grounded, real-time QA pipelines. We examine hallucination mitigation strategies in technical domain-specific deployments.</p>
+        <div class="paper-footer"><a href="https://zenodo.org/records/20444127" target="_blank" rel="noopener" class="paper-btn">Read Paper →</a></div>
+      </div>
+
+      <div class="glass-card paper-card">
+        <div class="paper-status-wrap">
+          <span class="paper-status status-planned">Draft</span>
+        </div>
+        <h3 class="paper-title">Deepfake Detection at Scale Using Transfer Learning</h3>
+        <div class="paper-tags">
+          <span class="paper-tag">#ComputerVision</span><span class="paper-tag">#Forensics</span><span class="paper-tag">#ResNet</span>
+        </div>
+        <p class="paper-abstract">Evaluation of fine-tuned convolutional networks and Vision Transformers on large-scale synthetic face datasets. Highlights robust features invariant to compression and digital manipulation.</p>
+        <div class="paper-footer"><a href="#" class="paper-btn">Read Draft →</a></div>
+      </div>
+
+      <div class="glass-card paper-card paper-span-2" style="min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;">
+        <div>
+          <span class="paper-status status-planned" style="margin-bottom:.85rem;display:inline-flex;">Planned</span>
+          <h3 class="paper-title" style="max-width:100%;margin:.6rem 0 .4rem;">Upcoming Research — Topic TBD</h3>
+          <p style="font-family:var(--font-mono);font-size:0.82rem;">Formulating next direction in Agentic AI and self-correcting semantic retrieval frameworks.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 6 — EDUCATION
+══════════════════════════════════════════════════════ -->
+<section id="education" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// education</span>
+      <h2 class="section-title gradient-text">Academic Background</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="glass-card edu-card">
+        <span class="edu-badge">Final Year 🎓</span>
+        <div class="edu-header">
+          <div class="edu-icon"><svg class="icon" style="width:28px;height:28px"><use href="#i-cap"/></svg></div>
+          <div class="edu-title"><h3>Bachelor of Computer Applications</h3><p>MCM DAV College, Kangra, HP</p></div>
+        </div>
+        <div class="edu-meta">
+          <span><svg class="icon" style="width:13px;height:13px"><use href="#i-calendar"/></svg>2023 – 2026</span>
+          <span>📍 Kangra, Himachal Pradesh</span>
+        </div>
+        <ul class="edu-highlights">
+          <li>Core CS fundamentals — Data Structures, DBMS, Algorithms, OOP</li>
+          <li>Applied learning in full-stack CRUD portals and system design projects</li>
+          <li>Balanced demanding dual-degree schedule with strong lab performance</li>
+        </ul>
+      </div>
+      <div class="glass-card edu-card">
+        <span class="edu-badge">In Progress 📡</span>
+        <div class="edu-header">
+          <div class="edu-icon"><svg class="icon" style="width:28px;height:28px"><use href="#i-terminal"/></svg></div>
+          <div class="edu-title"><h3>AS in Artificial Intelligence</h3><p>Saras AI Institute, USA (Remote)</p></div>
+        </div>
+        <div class="edu-meta">
+          <span><svg class="icon" style="width:13px;height:13px"><use href="#i-calendar"/></svg>2025 – 2027</span>
+          <span>📍 Remote / USA</span>
+        </div>
+        <ul class="edu-highlights">
+          <li>Specialised in Deep Learning, NLP, and Advanced RAG Systems</li>
+          <li>Built multi-class neural networks and automated evaluation pipelines</li>
+          <li>Collaborative remote lab clusters replicating industry sprints</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FUTURE MILESTONES — commented out, add back when ready
+    <div class="roadmap-wrap reveal">
+      <h3 class="roadmap-title gradient-text">Future Milestones</h3>
+      <div class="roadmap-track">
+        <div class="roadmap-step"><div class="roadmap-node">01</div><h4>BCA Graduation</h4><p class="text-muted">2026 · MCM DAV</p></div>
+        <div class="roadmap-step"><div class="roadmap-node">02</div><h4>MSc Machine Learning</h4><p class="text-muted">2027 · MBZUAI Application</p></div>
+        <div class="roadmap-step"><div class="roadmap-node">03</div><h4>Found AI Company</h4><p class="text-muted">Late 2020s · India / Global</p></div>
+      </div>
+    </div>
+    -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 7 — EXPERIENCE
+══════════════════════════════════════════════════════ -->
+<section id="experience" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// experience</span>
+      <h2 class="section-title gradient-text">Professional Experience</h2>
+    </div>
+    <div class="exp-container">
+      <div class="coming-soon-card">
+        <div class="cs-border"><svg><rect x="0" y="0" width="100%" height="100%" rx="16" ry="16"/></svg></div>
+        <div class="cs-icon"><svg class="icon" style="width:36px;height:36px"><use href="#i-rocket"/></svg></div>
+        <h3>Actively Seeking AI/ML Internships</h3>
+        <p class="text-muted">Targeting remote AI/ML roles and research-oriented junior positions. If you're building next-gen systems, let's create something together.</p>
+        <a href="#contact" class="btn btn-gradient magnetic" data-glow="cyan">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 8 — TIMELINE
+══════════════════════════════════════════════════════ -->
+<section id="timeline" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// timeline</span>
+      <h2 class="section-title gradient-text">My Journey</h2>
+    </div>
+    <div class="timeline-outer">
+      <div class="tl-line-bg"></div>
+      <div class="tl-line-fill" id="tl-fill"></div>
+
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2023</span><h4>Enrolled at MCM DAV College</h4><p class="text-muted">Started BCA in Kangra, Himachal Pradesh — anchored core CS foundations across theory and lab systems.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2024</span><h4>Discovered Machine Learning</h4><p class="text-muted">Got introduced to ML concepts and the world of AI — sparked a deep fascination with intelligent systems.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2024</span><h4>Self-Taught Python</h4><p class="text-muted">Learned Python entirely through free online resources, building the foundation for all future AI/ML work.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2025</span><h4>Enrolled at Saras AI Institute, USA</h4><p class="text-muted">Began parallel AS in AI — formalised NLP, RAG, and neural architecture knowledge under structured guidance.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2025</span><h4>FashionNet — First Deep Learning Model</h4><p class="text-muted">Trained a 3-block PyTorch CNN from scratch, hitting 93.15% accuracy on apparel classification.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2025</span><h4>Moksh AI v2.1 Launched</h4><p class="text-muted">Released Hybrid Agentic RAG chatbot combining LLaMA-3 retrieval with real-time web search.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2026</span><h4>Customer Churn API Deployed</h4><p class="text-muted">Shipped production Flask microservice with ROC-AUC 0.836 on enterprise customer data.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2026</span><h4>Deepfake Classifier — 94.05% Accuracy</h4><p class="text-muted">Fine-tuned ResNet-50 over 140K synthetic faces. 94.05% binary precision on held-out test set.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2026</span><h4>Research Paper Published</h4><p class="text-muted">Published Hybrid Agentic RAG research on Zenodo — a contribution to scalable, grounded retrieval systems.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2026</span><h4>Finishing BCA at MCM DAV</h4><p class="text-muted">Completing the BCA degree at MCM DAV College, Kangra — wrapping up three years of core CS foundations.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 9 — BLOG
+══════════════════════════════════════════════════════ -->
+<section id="blog" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// blog</span>
+      <h2 class="section-title gradient-text">Writing &amp; Thinking</h2>
+    </div>
+    <div class="blog-grid">
+      <div class="glass-card blog-card"><div class="blog-cover bc-1"><span class="blog-cat-badge">Projects</span></div><div class="blog-body"><div class="blog-meta">June 2025 · 8 min read</div><h3 class="blog-title">Building a RAG Chatbot with LLaMA 3 &amp; FAISS</h3><p class="blog-excerpt">Full walkthrough — vector indexing, dense retrieval tuning, and grounding agents against hallucinations.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-2"><span class="blog-cat-badge">Career</span></div><div class="blog-body"><div class="blog-meta">May 2025 · 5 min read</div><h3 class="blog-title">Demystifying AI Internship Applications</h3><p class="blog-excerpt">Practical strategies, portfolio formatting, and how to stand out in highly competitive AI roles.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-3"><span class="blog-cat-badge">ML Concepts</span></div><div class="blog-body"><div class="blog-meta">April 2025 · 6 min read</div><h3 class="blog-title">The Simple Math Behind Eigenvalues</h3><p class="blog-excerpt">Intuitive exploration of spatial transformations, dimensionality scaling, and PCA from first principles.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-4"><span class="blog-cat-badge">Career</span></div><div class="blog-body"><div class="blog-meta">March 2025 · 4 min read</div><h3 class="blog-title">Studying for MBZUAI: My Tactical System</h3><p class="blog-excerpt">How I balance dual curricula, prep research tracks, and design daily builds aligned to my goals.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-5"><span class="blog-cat-badge">Philosophy</span></div><div class="blog-body"><div class="blog-meta">Feb 2025 · 7 min read</div><h3 class="blog-title">Hindu Philosophy Meets Machine Learning</h3><p class="blog-excerpt">Mapping recursive Sanskrit grammar and cognitive concepts to modern recurrent neural nets.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-6"><span class="blog-cat-badge">Projects</span></div><div class="blog-body"><div class="blog-meta">Jan 2025 · 9 min read</div><h3 class="blog-title">From Deepfake Detector to Open Source</h3><p class="blog-excerpt">Behind the scenes — dataset curation, ResNet pipeline training, and deployment architecture.</p><a href="#" class="blog-link">Read More →</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS SECTION — commented out, add back when ready
+<section id="credentials" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// credentials</span>
+      <h2 class="section-title gradient-text">Certifications &amp; Achievements</h2>
+    </div>
+    <div class="certs-grid">
+      <div class="glass-card cert-card"><div class="cert-icon"><svg class="icon"><use href="#i-cap"/></svg></div><div class="cert-info"><h4>ML Specialization</h4><p class="text-muted">Coursera / Andrew Ng</p><span class="cert-badge">In Progress</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon"><svg class="icon"><use href="#i-terminal"/></svg></div><div class="cert-info"><h4>AS in Artificial Intelligence</h4><p class="text-muted">Saras AI Institute, USA</p><span class="cert-badge">In Progress</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon"><svg class="icon"><use href="#i-cap"/></svg></div><div class="cert-info"><h4>BCA Degree</h4><p class="text-muted">MCM DAV College</p><span class="cert-badge">Expected 2026</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon"><svg class="icon"><use href="#i-globe"/></svg></div><div class="cert-info"><h4>Portfolio Live</h4><p class="text-muted">mritunjaySharma05.github.io</p><span class="cert-badge">Active</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon" style="color:var(--text-muted);border-color:var(--border-surface)"><svg class="icon"><use href="#i-rocket"/></svg></div><div class="cert-info"><h4>Kaggle Competition Rank</h4><p class="text-muted">Future Target</p><span class="cert-badge muted">Upcoming</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon" style="color:var(--text-muted);border-color:var(--border-surface)"><svg class="icon"><use href="#i-paper"/></svg></div><div class="cert-info"><h4>Advanced PyTorch Developer</h4><p class="text-muted">Future Target</p><span class="cert-badge muted">Upcoming</span></div></div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 11 — CONTACT
+══════════════════════════════════════════════════════ -->
+<section id="contact" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// contact</span>
+      <h2 class="section-title gradient-text">Let's Build Something</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-panel">
+        <div class="contact-pitch">
+          <h3>Got an idea? Let's talk.</h3>
+          <p>I'm actively looking for remote AI/ML internships and research collaborations. If you're building something interesting in AI, I want to hear about it.</p>
+          <div class="status-badge" style="margin-top:1.5rem;"><span class="status-dot"></span>Available for Remote Part-Time Roles</div>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:mritunjaysharma080505@gmail.com" class="glass-card contact-link-card">
+            <div class="cl-icon"><svg class="icon"><use href="#i-email"/></svg></div>
+            <div class="cl-text"><h5>Email</h5><p>mritunjaysharma080505@gmail.com</p></div>
+          </a>
+          <a href="https://www.linkedin.com/in/mritunjay-sharma05/" target="_blank" rel="noopener" class="glass-card contact-link-card">
+            <div class="cl-icon"><svg class="icon"><use href="#i-linkedin"/></svg></div>
+            <div class="cl-text"><h5>LinkedIn</h5><p>linkedin.com/in/mritunjay-sharma05</p></div>
+          </a>
+          <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="glass-card contact-link-card">
+            <div class="cl-icon"><svg class="icon"><use href="#i-github"/></svg></div>
+            <div class="cl-text"><h5>GitHub</h5><p>github.com/mritunjaySharma05</p></div>
+          </a>
+          <a href="https://x.com/Mritunjay__05" target="_blank" rel="noopener" class="glass-card contact-link-card">
+            <div class="cl-icon"><svg class="icon"><use href="#i-twitter"/></svg></div>
+            <div class="cl-text"><h5>Twitter / X</h5><p>@Mritunjay__05</p></div>
+          </a>
+        </div>
+        <a href="Mritunjay_Sharma_CV_2026.docx" download class="btn btn-gradient magnetic" style="align-self:flex-start" data-glow="cyan">
+          <svg class="icon"><use href="#i-download"/></svg>Download My Resume
+        </a>
+      </div>
+
+      <div class="glass-card form-wrap">
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-name">Name</label>
+              <input type="text" id="f-name" name="name" class="form-input" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" name="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-subject">Subject</label>
+            <select id="f-subject" name="subject" class="form-input" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="internship">Internship Opportunity</option>
+              <option value="research">Research Collaboration</option>
+              <option value="project">Project Discussion</option>
+              <option value="hello">Just Saying Hi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" class="form-input" rows="5" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gradient magnetic" style="justify-content:center;width:100%" data-glow="violet">
+            Send Message <svg class="icon"><use href="#i-arrow-right"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="footer-logo">MS</a>
+        <p>Mritunjay Sharma — AI/ML Engineer and Researcher from Kangra, HP, India.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+          <a href="https://www.linkedin.com/in/mritunjay-sharma05/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+          <a href="https://x.com/Mritunjay__05" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter/X"><svg class="icon"><use href="#i-twitter"/></svg></a>
+          <a href="mailto:mritunjaysharma080505@gmail.com" class="social-btn" aria-label="Email"><svg class="icon"><use href="#i-email"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links-grid">
+          <a href="#about">About</a><a href="#projects">Projects</a>
+          <a href="#research">Research</a><a href="#education">Education</a>
+          <a href="#experience">Experience</a><a href="#blog">Blog</a>
+          <a href="#credentials">Certifications</a><a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Currently</h4>
+        <div class="status-badge" style="margin-bottom:1rem;"><span class="status-dot"></span>Open to Internships</div>
+        <p style="font-size:0.85rem;line-height:1.7;">Building at the intersection of RAG systems, computer vision, and agentic AI.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-muted">Designed &amp; built by Mritunjay Sharma with obsession ⚡ · © 2025 · mritunjaySharma05.github.io</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cursor.js" defer></script>
+<script src="js/hero.js"   defer></script>
+<script src="js/app.js"    defer></script>
+</body>
+</html>
