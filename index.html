@@ -1,760 +1,750 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mritunjay Sharma | AI/ML Engineer & Researcher</title>
-    <meta name="description" content="Portfolio of Mritunjay Sharma, AI/ML Engineer and Deep Learning Researcher building intelligent, high-performance RAG and computer vision systems.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%252300F5FF'%3E%3Cpath d='M12 2L2 22h20L12 2zm0 4l6.5 13h-13L12 6z'/%3E%3C/svg%3E">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Syne:wght@400..800&display=swap');
-
-        :root {
-            --bg-base: #050810;
-            --bg-base-darker: #020408;
-            --bg-surface: rgba(255, 255, 255, 0.03);
-            --bg-surface-hover: rgba(255, 255, 255, 0.06);
-            --border-surface: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(0, 245, 255, 0.3);
-            --accent-cyan: #00F5FF;
-            --accent-cyan-rgb: 0, 245, 255;
-            --accent-violet: #7C3AED;
-            --accent-violet-rgb: 124, 58, 237;
-            --accent-coral: #FF6B35;
-            --accent-coral-rgb: 255, 107, 53;
-            --text-main: #F1F5F9;
-            --text-muted: #8A99AD;
-            --font-display: 'Syne', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-            --nav-height: 80px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-cyan) var(--bg-base-darker);
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-base-darker); }
-        ::-webkit-scrollbar-thumb { background: var(--bg-surface); border: 1px solid var(--border-surface); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 245, 255, 0.2); border-color: var(--accent-cyan); }
-
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            html, body, a, button, input, select, textarea, .tab-btn { cursor: none !important; }
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 9999;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        .custom-cursor-dot {
-            width: 6px; height: 6px;
-            background: var(--accent-cyan);
-            border-radius: 50%;
-            position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 10000;
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-            box-shadow: 0 0 10px var(--accent-cyan);
-            display: none;
-        }
-
-        .custom-cursor-ring {
-            width: 38px; height: 38px;
-            border: 1.5px solid rgba(0, 245, 255, 0.35);
-            border-radius: 50%;
-            position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9999;
-            display: none;
-            transition: width 0.2s, height 0.2s, border-color 0.2s, background-color 0.2s;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .custom-cursor-dot, .custom-cursor-ring { display: block; }
-        }
-
-        .cursor-hover { width: 50px; height: 50px; border-color: var(--accent-violet); background-color: rgba(124, 58, 237, 0.05); }
-        .cursor-hover-dot { background-color: var(--accent-violet); box-shadow: 0 0 15px var(--accent-violet); width: 8px; height: 8px; }
-
-        .icon { width: 20px; height: 20px; fill: currentColor; display: inline-block; vertical-align: middle; }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .glass-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-surface);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.3s;
-        }
-        .glass-card:hover { transform: translateY(-6px); border-color: rgba(0, 245, 255, 0.25); box-shadow: 0 12px 30px rgba(0, 245, 255, 0.05); }
-
-        h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; }
-        p { font-size: 1rem; color: var(--text-muted); }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-label { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; display: block; }
-        .section-title { font-size: 2.5rem; margin-bottom: 2.5rem; }
-        @media (max-width: 768px) { .section-title { font-size: 2rem; } }
-
-        section { padding: 100px 0; position: relative; }
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-        .progress-bar-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 1001; background: transparent; }
-        .progress-bar { height: 100%; width: 0%; background: linear-gradient(to right, var(--accent-cyan), var(--accent-violet)); box-shadow: 0 0 8px var(--accent-cyan); }
-
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); z-index: 1000; transition: background 0.4s, border-bottom 0.4s, backdrop-filter 0.4s; border-bottom: 1px solid transparent; }
-        .navbar.scrolled { background: rgba(5, 8, 16, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-surface); }
-        .nav-container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em; color: var(--text-main); text-decoration: none; padding: 6px 12px; border: 1px solid var(--accent-cyan); border-radius: 6px; box-shadow: 0 0 10px rgba(0, 245, 255, 0.2); transition: background-color 0.3s, box-shadow 0.3s; }
-        .nav-logo:hover { background-color: rgba(0, 245, 255, 0.05); box-shadow: 0 0 16px rgba(0, 245, 255, 0.4); }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s; font-family: var(--font-body); }
-        .nav-links a:hover { color: var(--accent-cyan); text-shadow: 0 0 8px rgba(0, 245, 255, 0.3); }
-        .nav-actions { display: flex; align-items: center; gap: 1rem; }
-
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 22px; border-radius: 30px; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: transform 0.1s ease-out, box-shadow 0.3s, border-color 0.3s; border: 1px solid transparent; cursor: pointer; gap: 8px; }
-        .btn-outline { border-color: var(--accent-cyan); color: var(--accent-cyan); background: transparent; }
-        .btn-outline:hover { background: rgba(0, 245, 255, 0.04); box-shadow: 0 0 15px rgba(0, 245, 255, 0.2); }
-        .btn-gradient { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet)); color: #000; border: none; }
-        .btn-gradient:hover { box-shadow: 0 0 20px rgba(0, 245, 255, 0.35); }
-
-        .nav-hamburger { display: none; background: none; border: none; flex-direction: column; gap: 6px; z-index: 1005; }
-        .nav-hamburger span { display: block; width: 24px; height: 2px; background-color: var(--text-main); transition: transform 0.3s, opacity 0.3s; }
-        .nav-hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .nav-hamburger.active span:nth-child(2) { opacity: 0; }
-        .nav-hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-        .mobile-nav-overlay { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: rgba(5, 8, 16, 0.98); backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1); }
-        .mobile-nav-overlay.active { right: 0; }
-        .mobile-links { display: flex; flex-direction: column; align-items: center; list-style: none; gap: 1.75rem; }
-        .mobile-links a { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--text-main); text-decoration: none; transition: color 0.3s; }
-        .mobile-links a:hover { color: var(--accent-cyan); }
-
-        @media (max-width: 1024px) { .nav-links, .nav-actions { display: none; } .nav-hamburger { display: flex; } }
-
-        .hero { height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        .hero-scanlines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(to bottom, rgba(0, 245, 255, 0.015) 0px, rgba(0, 245, 255, 0.015) 1px, transparent 1px, transparent 3px); pointer-events: none; z-index: 2; }
-        .hero-glow { position: absolute; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(0, 245, 255, 0.03) 0%, rgba(124, 58, 237, 0.02) 50%, transparent 100%); top: 15%; left: 20%; z-index: 1; filter: blur(80px); pointer-events: none; }
-        .hero-content { position: relative; z-index: 3; text-align: center; max-width: 900px; padding: 0 24px; }
-
-        .hero-pretitle { font-family: var(--font-mono); color: var(--accent-cyan); font-size: 0.95rem; margin-bottom: 1.25rem; letter-spacing: 0.05em; text-shadow: 0 0 10px rgba(0, 245, 255, 0.2); opacity: 0; transform: translateY(20px); animation: heroFadeIn 0.8s 0.2s forwards cubic-bezier(0.16, 1, 0.3, 1); }
-        .hero-name { font-size: 5rem; line-height: 1; margin-bottom: 1.5rem; color: var(--text-main); letter-spacing: -0.03em; }
-        .hero-name-wrapper { display: inline-block; overflow: hidden; vertical-align: bottom; }
-        .hero-name span { display: inline-block; opacity: 0; transform: translateY(100%); animation: heroReveal 1.2s 0.4s forwards cubic-bezier(0.16, 1, 0.3, 1); }
-
-        @keyframes heroReveal { to { opacity: 1; transform: translateY(0); } }
-        @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 768px) { .hero-name { font-size: 3.2rem; } }
-
-        .hero-typing-container { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--accent-violet); height: 2.6rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; opacity: 0; transform: translateY(20px); animation: heroFadeIn 0.8s 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1); }
-        .typing-text { border-right: 2px solid var(--accent-cyan); white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; padding-right: 4px; }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--accent-cyan); } }
-
-        .hero-desc { max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem; color: var(--text-muted); opacity: 0; transform: translateY(20px); animation: heroFadeIn 0.8s 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1); }
-        .hero-badge-wrap { opacity: 0; transform: translateY(20px); animation: heroFadeIn 0.8s 1s forwards cubic-bezier(0.16, 1, 0.3, 1); margin-bottom: 2.5rem; }
-
-        .status-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 6px 14px; font-size: 0.85rem; color: var(--text-main); font-family: var(--font-mono); backdrop-filter: blur(8px); }
-        .status-dot { width: 8px; height: 8px; background-color: #10B981; border-radius: 50%; box-shadow: 0 0 10px #10B981; animation: pulse-dot 1.8s infinite; }
-        @keyframes pulse-dot { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
-
-        .hero-ctas { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; opacity: 0; transform: translateY(20px); animation: heroFadeIn 0.8s 1.2s forwards cubic-bezier(0.16, 1, 0.3, 1); }
-        @media (max-width: 500px) { .hero-ctas { flex-direction: column; gap: 1rem; } .hero-ctas .btn { width: 100%; } }
-
-        .hero-socials { display: flex; align-items: center; justify-content: center; gap: 1.5rem; opacity: 0; transform: translateY(20px); animation: heroFadeIn 0.8s 1.4s forwards cubic-bezier(0.16, 1, 0.3, 1); }
-        .social-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-surface); background: rgba(255,255,255,0.02); color: var(--text-muted); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: border-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s; }
-        .social-btn:hover { color: var(--accent-cyan); border-color: var(--accent-cyan); box-shadow: 0 0 12px rgba(0, 245, 255, 0.25); transform: translateY(-3px); }
-
-        .hero-scroll { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 3; color: var(--text-muted); opacity: 0; animation: heroFadeIn 0.8s 1.6s forwards cubic-bezier(0.16, 1, 0.3, 1); }
-        .scroll-arrow { display: block; animation: bounce-arrow 1.6s infinite ease-in-out; color: var(--accent-cyan); background: none; border: none; }
-        @keyframes bounce-arrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
-
-        .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; }
-        @media (max-width: 1024px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
-        .about-text { display: flex; flex-direction: column; }
-        .about-bio { font-size: 1.05rem; margin-bottom: 2rem; color: var(--text-muted); text-align: justify; }
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
-        .stat-card { padding: 20px; text-align: center; }
-        .stat-number { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 4px; text-shadow: 0 0 10px rgba(0, 245, 255, 0.15); }
-        .stat-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
-        .skills-container { display: flex; flex-direction: column; gap: 1.5rem; }
-        .skill-group { display: flex; flex-direction: column; gap: 0.5rem; }
-        .skill-group-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-violet); letter-spacing: 0.05em; }
-        .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-        .skill-chip { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 6px; padding: 6px 12px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-main); transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s; }
-        .skill-chip:hover { border-color: var(--accent-cyan); background-color: rgba(0, 245, 255, 0.02); box-shadow: 0 0 8px rgba(0, 245, 255, 0.1); }
-
-        .about-visual { display: flex; justify-content: center; align-items: center; position: relative; height: 440px; }
-        .profile-orbit-wrap { position: relative; width: 280px; height: 280px; display: flex; align-items: center; justify-content: center; }
-        .profile-ring { position: absolute; border: 1px dashed rgba(0, 245, 255, 0.15); border-radius: 50%; }
-        .profile-ring-1 { width: 320px; height: 320px; animation: spin-clockwise 25s linear infinite; }
-        .profile-ring-2 { width: 360px; height: 360px; border: 1px dashed rgba(124, 58, 237, 0.15); animation: spin-counter 30s linear infinite; }
-        .avatar-container { width: 240px; height: 240px; border-radius: 50%; border: 2px solid var(--accent-cyan); box-shadow: 0 0 25px rgba(0, 245, 255, 0.25); background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(124, 58, 237, 0.1)), var(--bg-base-darker); overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; animation: avatar-pulse 3s ease-in-out infinite alternate; }
-        @keyframes avatar-pulse { to { box-shadow: 0 0 35px rgba(0, 245, 255, 0.4), 0 0 10px rgba(124, 58, 237, 0.2); border-color: var(--accent-violet); } }
-        .avatar-placeholder { font-family: var(--font-display); font-size: 3rem; font-weight: 800; letter-spacing: 0.05em; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .floating-badge { position: absolute; background: rgba(5, 8, 16, 0.85); border: 1px solid var(--border-surface); padding: 8px 14px; border-radius: 20px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan); backdrop-filter: blur(8px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); white-space: nowrap; }
-        .badge-1 { top: 20px; left: -20px; border-color: var(--accent-cyan); animation: float-slow 5s ease-in-out infinite; }
-        .badge-2 { bottom: 40px; right: -20px; border-color: var(--accent-violet); animation: float-slow 6s ease-in-out infinite 1s; }
-        .badge-3 { top: 180px; right: -40px; border-color: var(--accent-coral); color: var(--accent-coral); animation: float-slow 4s ease-in-out infinite 0.5s; }
-        @keyframes spin-clockwise { 100% { transform: rotate(360deg); } }
-        @keyframes spin-counter { 100% { transform: rotate(-360deg); } }
-        @keyframes float-slow { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
-
-        .video-section { background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.05) 0%, transparent 60%); }
-        .video-container-wrap { max-width: 800px; margin: 0 auto; }
-        .video-glow-wrap { position: relative; padding: 2px; border-radius: 20px; overflow: hidden; background: rgba(255, 255, 255, 0.03); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .video-glow-wrap::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent 15%, var(--accent-cyan) 35%, var(--accent-violet) 65%, transparent 85%); animation: rotate-conic 6s linear infinite; z-index: 1; }
-        .video-inner { position: relative; background: var(--bg-base-darker); border-radius: 18px; z-index: 2; overflow: hidden; aspect-ratio: 16/9; }
-        .video-inner iframe { width: 100%; height: 100%; border: none; display: block; }
-        @keyframes rotate-conic { to { transform: rotate(360deg); } }
-
-        .filter-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 3.5rem; }
-        .tab-btn { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 30px; padding: 8px 20px; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: var(--text-muted); transition: all 0.3s; cursor: pointer; }
-        .tab-btn:hover { color: var(--accent-cyan); border-color: rgba(0, 245, 255, 0.25); }
-        .tab-btn.active { color: #000; background: var(--accent-cyan); border-color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0, 245, 255, 0.3); }
-
-        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        @media (max-width: 1024px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .projects-grid { grid-template-columns: 1fr; } }
-
-        .project-card { display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; }
-        .project-accent-bar { height: 4px; width: 100%; position: absolute; top: 0; left: 0; }
-        .accent-nlp { background: var(--accent-cyan); }
-        .accent-cv { background: var(--accent-violet); }
-        .accent-backend { background: var(--accent-coral); }
-        .accent-tools { background: #34D399; }
-        .accent-web { background: #FBBF24; }
-        .project-card-body { padding: 28px 24px; flex-grow: 1; display: flex; flex-direction: column; }
-        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-        .project-category { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-        .project-title { font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--text-main); }
-        .project-desc { font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-muted); flex-grow: 1; }
-        .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.5rem; }
-        .project-tech-badge { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 4px; padding: 3px 8px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
-        .project-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .project-links { display: flex; gap: 12px; }
-        .project-link { color: var(--text-muted); transition: color 0.3s, transform 0.3s; }
-        .project-link:hover { color: var(--accent-cyan); transform: translateY(-2px); }
-
-        .papers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        @media (max-width: 768px) { .papers-grid { grid-template-columns: 1fr; } }
-        .paper-card { padding: 30px; display: flex; flex-direction: column; height: 100%; position: relative; }
-        .paper-status-wrap { position: absolute; top: 24px; right: 24px; }
-        .paper-status { font-family: var(--font-mono); font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; }
-        .status-published { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); color: #10B981; }
-        .status-inprogress { background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); color: #F59E0B; }
-        .status-planned { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); color: var(--text-muted); }
-        .paper-title { font-size: 1.4rem; margin-bottom: 0.75rem; max-width: 80%; color: var(--text-main); }
-        .paper-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
-        .paper-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); }
-        .paper-abstract { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2rem; flex-grow: 1; line-height: 1.6; }
-        .paper-footer { padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .paper-btn { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color 0.3s, transform 0.3s; }
-        .paper-btn:hover { color: var(--accent-violet); transform: translateX(4px); }
-        .paper-btn.disabled { color: var(--text-muted); pointer-events: none; }
-
-        .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-bottom: 4rem; }
-        @media (max-width: 900px) { .edu-grid { grid-template-columns: 1fr; } }
-        .edu-card { padding: 35px; display: flex; flex-direction: column; gap: 1.5rem; position: relative; }
-        .edu-badge { position: absolute; top: 24px; right: 24px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-surface); padding: 4px 10px; border-radius: 20px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); }
-        .edu-header { display: flex; gap: 1.25rem; align-items: center; }
-        .edu-icon-container { width: 60px; height: 60px; border-radius: 12px; background: rgba(0, 245, 255, 0.03); border: 1px solid rgba(0, 245, 255, 0.15); display: flex; align-items: center; justify-content: center; color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0, 245, 255, 0.1); }
-        .edu-title-wrap h3 { font-size: 1.3rem; margin-bottom: 4px; }
-        .edu-title-wrap p { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-violet); }
-        .edu-details { display: flex; flex-direction: column; gap: 8px; }
-        .edu-meta { display: flex; gap: 12px; font-size: 0.9rem; font-family: var(--font-mono); color: var(--text-muted); }
-        .edu-meta span { display: flex; align-items: center; gap: 6px; }
-        .edu-highlights { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 0.5rem; }
-        .edu-highlights li { font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 10px; }
-        .edu-highlights li::before { content: "▹"; color: var(--accent-cyan); font-weight: bold; }
-
-        .roadmap-wrap { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .roadmap-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
-        .roadmap-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; position: relative; }
-        @media (max-width: 768px) { .roadmap-timeline { grid-template-columns: 1fr; gap: 1.5rem; } .roadmap-timeline::before { display: none; } }
-        .roadmap-timeline::before { content: ''; position: absolute; top: 40px; left: 10%; width: 80%; height: 2px; background: linear-gradient(to right, var(--accent-cyan), var(--accent-violet)); z-index: 1; opacity: 0.35; }
-        .roadmap-step { position: relative; z-index: 2; text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .roadmap-node { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-base-darker); border: 2px solid var(--accent-cyan); box-shadow: 0 0 15px rgba(0, 245, 255, 0.35); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); }
-        .roadmap-step:nth-child(2) .roadmap-node { border-color: var(--accent-violet); box-shadow: 0 0 15px rgba(124, 58, 237, 0.35); color: var(--accent-violet); }
-        .roadmap-step:nth-child(3) .roadmap-node { border-color: var(--accent-coral); box-shadow: 0 0 15px rgba(255, 107, 53, 0.35); color: var(--accent-coral); }
-        .roadmap-step h4 { font-size: 1.1rem; margin-bottom: 4px; }
-        .roadmap-step p { font-size: 0.85rem; }
-
-        .exp-container { max-width: 800px; margin: 0 auto; }
-        .coming-soon-card { padding: 50px 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; border: none; border-radius: 16px; }
-        .coming-soon-border { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
-        .coming-soon-border rect { width: 100%; height: 100%; fill: none; stroke: var(--accent-cyan); stroke-width: 2; stroke-dasharray: 12 16; animation: dash-flow 1.5s linear infinite; rx: 16; }
-        @keyframes dash-flow { to { stroke-dashoffset: -56; } }
-        .coming-soon-icon { width: 80px; height: 80px; border-radius: 50%; background: rgba(0, 245, 255, 0.02); border: 1px solid rgba(0, 245, 255, 0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; color: var(--accent-cyan); box-shadow: 0 0 25px rgba(0, 245, 255, 0.15); }
-        .coming-soon-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
-        .coming-soon-card p { font-size: 1.1rem; max-width: 500px; margin-bottom: 2.5rem; }
-
-        .timeline-container { position: relative; padding: 40px 0; margin-top: 2rem; }
-        .timeline-line-bg { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255, 255, 255, 0.05); transform: translateX(-50%); }
-        .timeline-line-progress { position: absolute; left: 50%; top: 0; width: 2px; background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-violet)); transform: translateX(-50%); height: 0%; box-shadow: 0 0 10px rgba(0, 245, 255, 0.5); transition: height 0.1s ease-out; }
-        .timeline-item { display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 3.5rem; width: 100%; }
-        .timeline-item:nth-child(even) { justify-content: flex-start; padding-right: 0; padding-left: 50%; }
-        .timeline-node { width: 20px; height: 20px; border-radius: 50%; background: var(--bg-base-darker); border: 3px solid var(--accent-cyan); box-shadow: 0 0 10px rgba(0, 245, 255, 0.4); position: absolute; left: 50%; top: 15px; transform: translateX(-50%); z-index: 10; transition: transform 0.3s, border-color 0.3s; }
-        .timeline-item:nth-child(even) .timeline-node { border-color: var(--accent-violet); box-shadow: 0 0 10px rgba(124, 58, 237, 0.4); }
-        .timeline-card { width: 90%; max-width: 480px; margin: 0 30px; padding: 24px; position: relative; transform: translateX(-20px); opacity: 0; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease; }
-        .timeline-item:nth-child(even) .timeline-card { transform: translateX(20px); }
-        .timeline-item.active .timeline-card { transform: translateX(0); opacity: 1; }
-        .timeline-item.active .timeline-node { transform: translateX(-50%) scale(1.2); }
-        .timeline-year { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 6px; display: block; }
-        .timeline-item:nth-child(even) .timeline-year { color: var(--accent-violet); }
-        .timeline-card h4 { font-size: 1.15rem; margin-bottom: 6px; }
-        .timeline-card p { font-size: 0.95rem; }
-        @media (max-width: 768px) { .timeline-line-bg, .timeline-line-progress { left: 20px; transform: none; } .timeline-item { justify-content: flex-start; padding-right: 0; padding-left: 40px; } .timeline-item:nth-child(even) { justify-content: flex-start; padding-left: 40px; } .timeline-node { left: 20px; transform: translateX(-50%); } .timeline-item:nth-child(even) .timeline-node { transform: translateX(-50%); } .timeline-card { width: 100%; margin: 0 0 0 10px; transform: translateX(20px) !important; } .timeline-item.active .timeline-card { transform: translateX(0) !important; } }
-
-        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        @media (max-width: 1024px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } }
-        .blog-card { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
-        .blog-cover { height: 180px; width: 100%; position: relative; overflow: hidden; }
-        .blog-cover-1 { background: radial-gradient(circle at 10% 20%, rgba(0, 245, 255, 0.4) 0%, rgba(124, 58, 237, 0.4) 90%), var(--bg-base-darker); }
-        .blog-cover-2 { background: linear-gradient(135deg, rgba(124, 58, 237, 0.4) 0%, rgba(255, 107, 53, 0.3) 100%), var(--bg-base-darker); }
-        .blog-cover-3 { background: radial-gradient(circle at 80% 40%, rgba(0, 245, 255, 0.3) 0%, rgba(255, 107, 53, 0.4) 100%), var(--bg-base-darker); }
-        .blog-cover-4 { background: linear-gradient(45deg, rgba(16, 185, 129, 0.3) 0%, rgba(0, 245, 255, 0.4) 100%), var(--bg-base-darker); }
-        .blog-cover-5 { background: radial-gradient(circle at 30% 70%, rgba(255, 107, 53, 0.4) 0%, rgba(124, 58, 237, 0.4) 100%), var(--bg-base-darker); }
-        .blog-cover-6 { background: linear-gradient(225deg, rgba(0, 245, 255, 0.4) 0%, rgba(124, 58, 237, 0.2) 50%, rgba(255, 107, 53, 0.3) 100%), var(--bg-base-darker); }
-        .blog-category-badge { position: absolute; top: 15px; left: 15px; background: rgba(5, 8, 16, 0.85); border: 1px solid var(--accent-cyan); border-radius: 4px; padding: 4px 8px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); backdrop-filter: blur(8px); }
-        .blog-card:hover .blog-cover { filter: saturate(1.2); }
-        .blog-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
-        .blog-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
-        .blog-title { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-main); line-height: 1.4; }
-        .blog-excerpt { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
-        .blog-link { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color 0.3s, transform 0.3s; }
-        .blog-link:hover { color: var(--accent-violet); transform: translateX(4px); }
-
-        .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        @media (max-width: 1024px) { .certs-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .certs-grid { grid-template-columns: 1fr; } }
-        .cert-card { padding: 24px; display: flex; align-items: center; gap: 1.25rem; }
-        .cert-icon-wrap { width: 50px; height: 50px; border-radius: 10px; background: rgba(124, 58, 237, 0.04); border: 1px solid rgba(124, 58, 237, 0.15); display: flex; align-items: center; justify-content: center; color: var(--accent-violet); flex-shrink: 0; box-shadow: 0 0 10px rgba(124, 58, 237, 0.1); }
-        .cert-info h4 { font-size: 1.05rem; margin-bottom: 2px; color: var(--text-main); }
-        .cert-info p { font-size: 0.85rem; margin-bottom: 6px; }
-        .cert-badge { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan); border: 1px solid rgba(0, 245, 255, 0.15); background: rgba(0, 245, 255, 0.01); padding: 2px 6px; border-radius: 4px; display: inline-block; }
-
-        .contact-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem; }
-        @media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
-        .contact-info-panel { display: flex; flex-direction: column; gap: 2rem; }
-        .contact-pitch h3 { font-size: 2rem; margin-bottom: 1rem; }
-        .contact-cards { display: flex; flex-direction: column; gap: 1rem; }
-        .contact-detail-card { padding: 20px; display: flex; align-items: center; gap: 1.25rem; text-decoration: none; }
-        .contact-detail-icon { width: 50px; height: 50px; border-radius: 50%; background: rgba(0, 245, 255, 0.02); border: 1px solid rgba(0, 245, 255, 0.15); display: flex; align-items: center; justify-content: center; color: var(--accent-cyan); flex-shrink: 0; transition: background-color 0.3s, border-color 0.3s; }
-        .contact-detail-card:hover .contact-detail-icon { background-color: rgba(0, 245, 255, 0.05); border-color: var(--accent-cyan); box-shadow: 0 0 12px rgba(0, 245, 255, 0.2); }
-        .contact-detail-text h5 { font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.05em; }
-        .contact-detail-text p { font-size: 1rem; color: var(--text-main); font-weight: 500; }
-
-        .contact-form-wrap { padding: 40px; }
-        @media (max-width: 500px) { .contact-form-wrap { padding: 24px; } }
-        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
-        .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
-        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-        .form-group label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.05em; }
-        .form-input { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-surface); border-radius: 8px; padding: 14px 18px; font-family: var(--font-body); color: var(--text-main); font-size: 0.95rem; transition: border-color 0.3s, box-shadow 0.3s; outline: none; width: 100%; }
-        .form-input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 10px rgba(0, 245, 255, 0.15); }
-        select.form-input { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%25238A99AD' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 18px center; background-size: 16px; padding-right: 45px; }
-        select.form-input option { background-color: var(--bg-base-darker); color: var(--text-main); }
-        .form-input::placeholder { color: rgba(255, 255, 255, 0.2); }
-
-        .footer { background-color: var(--bg-base-darker); padding: 80px 0 40px; border-top: 1px solid var(--border-surface); }
-        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; margin-bottom: 4rem; }
-        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr; gap: 3rem; } }
-        .footer-brand { display: flex; flex-direction: column; gap: 1.25rem; }
-        .footer-logo { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: var(--accent-cyan); letter-spacing: 0.05em; text-decoration: none; }
-        .footer-brand p { font-size: 0.95rem; max-width: 320px; }
-        .footer-links-wrap { display: flex; flex-direction: column; gap: 1.5rem; }
-        .footer-links-wrap h4 { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-violet); text-transform: uppercase; letter-spacing: 0.1em; }
-        .footer-links-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .footer-links-grid a { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; transition: color 0.3s; }
-        .footer-links-grid a:hover { color: var(--accent-cyan); }
-        .footer-social-wrap { display: flex; flex-direction: column; gap: 1.5rem; }
-        .footer-social-wrap h4 { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-violet); text-transform: uppercase; letter-spacing: 0.1em; }
-        .footer-socials { display: flex; gap: 1rem; }
-        .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.04); text-align: center; }
-        .footer-bottom p { font-size: 0.85rem; font-family: var(--font-mono); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mritunjay Sharma | AI/ML Engineer & Researcher</title>
+  <meta name="description" content="Portfolio of Mritunjay Sharma — AI/ML Engineer, Deep Learning Researcher, and RAG systems builder from India.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F5FF'%3E%3Cpath d='M12 2L2 22h20L12 2zm0 4l6.5 13h-13L12 6z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
 </head>
 <body>
-    <svg style="display: none;">
-        <symbol id="icon-github" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></symbol>
-        <symbol id="icon-linkedin" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></symbol>
-        <symbol id="icon-twitter" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
-        <symbol id="icon-email" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></symbol>
-        <symbol id="icon-arrow-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M19 12l-7 7-7-7"/></symbol>
-        <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></symbol>
-        <symbol id="icon-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
-        <symbol id="icon-rocket" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5M12 2C6 2 2 6 2 12c0 2 1 3.5 2 4.5l8-8 4.5 4.5-8 8c1 1 2.5 2 4.5 2 6 0 10-4 10-10 0-4-3-7-7-7zM9 15l-3 3M15 9l3-3"/></symbol>
-        <symbol id="icon-cap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 10v6M2 10l10-5 10 5-10 5zM6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/></symbol>
-        <symbol id="icon-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></symbol>
-        <symbol id="icon-paper" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol>
-        <symbol id="icon-terminal" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 17l6-6-6-6M12 19h8"/></symbol>
-        <symbol id="icon-calendar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM16 2v4M8 2v4M3 10h18"/></symbol>
-        <symbol id="icon-globe" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 0c-2.5 0-4.5 4.5-4.5 10s2 10 4.5 10 4.5-4.5 4.5-10-2-10-4.5-10zm-10 10h20"/></symbol>
-    </svg>
 
-    <div class="custom-cursor-dot"></div>
-    <div class="custom-cursor-ring"></div>
-    <div class="progress-bar-wrap"><div class="progress-bar" id="scroll-progress"></div></div>
+<!-- ── SVG ICON SPRITES ──────────────────────────────────── -->
+<svg style="display:none">
+  <symbol id="i-github" viewBox="0 0 24 24">
+    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+  </symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24">
+    <path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zm-11 19H5V8h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/>
+  </symbol>
+  <symbol id="i-twitter" viewBox="0 0 24 24">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </symbol>
+  <symbol id="i-email" viewBox="0 0 24 24">
+    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+  </symbol>
+  <symbol id="i-download" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+  </symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M19 12l-7 7-7-7"/>
+  </symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+  </symbol>
+  <symbol id="i-external" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+  </symbol>
+  <symbol id="i-paper" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+  </symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 10v6M2 10l10-5 10 5-10 5zM6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/>
+  </symbol>
+  <symbol id="i-terminal" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 17l6-6-6-6M12 19h8"/>
+  </symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4.5 16.5c-1.5 1.26-2 3.5-2 3.5s2.24-1 3.5-2M12 2C6 2 2 6 2 12c0 2 1 3.5 2 4.5l8-8 4.5 4.5-8 8c1 1 2.5 2 4.5 2 6 0 10-4 10-10 0-4-3-7-7-7zM9 15l-3 3M15 9l3-3"/>
+  </symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zM16 2v4M8 2v4M3 10h18"/>
+  </symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0c-2.5 0-4.5 4.5-4.5 10s2 10 4.5 10 4.5-4.5 4.5-10S14.5 2 12 2zM2 12h20"/>
+  </symbol>
+  <symbol id="i-play" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 3l14 9-14 9V3z"/>
+  </symbol>
+</svg>
 
-    <header class="navbar" id="main-navbar">
-        <div class="container nav-container">
-            <a href="#" class="nav-logo">MS</a>
-            <nav><ul class="nav-links">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#research" class="nav-link">Research</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul></nav>
-            <div class="nav-actions">
-                <a href="#" class="btn btn-outline btn-magnetic" data-glow="cyan"><svg class="icon"><use href="#icon-download"></use></svg>Download Resume</a>
-                <a href="#contact" class="btn btn-gradient btn-magnetic" data-glow="violet">Hire Me</a>
-            </div>
-            <button class="nav-hamburger" id="hamburger-btn" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-        </div>
-    </header>
+<!-- ── CURSOR ─────────────────────────────────────────────── -->
+<div class="cursor-dot"  id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
-    <div class="mobile-nav-overlay" id="mobile-menu">
-        <ul class="mobile-links">
-            <li><a href="#about" class="mobile-nav-link">About</a></li>
-            <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
-            <li><a href="#research" class="mobile-nav-link">Research</a></li>
-            <li><a href="#education" class="mobile-nav-link">Education</a></li>
-            <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
-            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
-        </ul>
-        <div style="display:flex;flex-direction:column;gap:1rem;width:80%;">
-            <a href="#" class="btn btn-outline" style="justify-content:center;width:100%;"><svg class="icon"><use href="#icon-download"></use></svg>Download Resume</a>
-            <a href="#contact" class="btn btn-gradient" style="justify-content:center;width:100%;">Hire Me</a>
-        </div>
+<!-- ── SHARE TOAST ───────────────────────────────────────── -->
+<div class="share-toast" id="share-toast">Link copied to clipboard</div>
+
+<!-- ── SCROLL PROGRESS ────────────────────────────────────── -->
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="scroll-progress"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════ -->
+<header class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="#home" class="nav-logo">MS</a>
+
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="Mritunjay_Sharma_CV_2026.docx" download class="btn btn-outline">
+        <svg class="icon"><use href="#i-download"/></svg>Resume
+      </a>
+      <a href="#contact" class="btn btn-gradient">Hire Me</a>
     </div>
 
-    <section class="hero" id="home">
-        <canvas id="hero-canvas"></canvas>
-        <div class="hero-scanlines"></div>
-        <div class="hero-glow"></div>
-        <div class="hero-content">
-            <div class="hero-pretitle">console.log("Hello, World 👋")</div>
-            <h1 class="hero-name"><span class="hero-name-wrapper"><span>MRITUNJAY SHARMA</span></span></h1>
-            <div class="hero-typing-container"><span class="typing-text">AI/ML Engineer</span></div>
-            <p class="hero-desc">Building intelligent systems that think, learn, and scale — from India to the world.</p>
-            <div class="hero-badge-wrap"><div class="status-badge"><span class="status-dot"></span>Open to Remote AI/ML Internships</div></div>
-            <div class="hero-ctas">
-                <a href="#projects" class="btn btn-gradient btn-magnetic" data-glow="cyan">Explore My Work</a>
-                <a href="#" class="btn btn-outline btn-magnetic" data-glow="violet"><svg class="icon"><use href="#icon-download"></use></svg>Download Resume</a>
-            </div>
-            <div class="hero-socials">
-                <a href="https://github.com/mritunjaySharma05" target="_blank" class="social-btn btn-magnetic" data-glow="cyan"><svg class="icon"><use href="#icon-github"></use></svg></a>
-                <a href="#" target="_blank" class="social-btn btn-magnetic" data-glow="violet"><svg class="icon"><use href="#icon-linkedin"></use></svg></a>
-                <a href="#" target="_blank" class="social-btn btn-magnetic" data-glow="cyan"><svg class="icon"><use href="#icon-twitter"></use></svg></a>
-                <a href="mailto:your-email@gmail.com" class="social-btn btn-magnetic" data-glow="violet"><svg class="icon"><use href="#icon-email"></use></svg></a>
-            </div>
-        </div>
-        <div class="hero-scroll"><a href="#about" class="scroll-arrow" aria-label="Scroll to About Me"><svg class="icon" style="width:28px;height:28px;"><use href="#icon-arrow-down"></use></svg></a></div>
-    </section>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
-    <section id="about" class="reveal">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text">
-                    <span class="section-label">// about_me</span>
-                    <h2 class="section-title gradient-text">Who Am I?</h2>
-                    <p class="about-bio">I'm a 20-year-old AI/ML engineer from Chandigarh, India — currently finishing my BCA at MCM DAV College while simultaneously doing an Associate of Science in Artificial Intelligence at Saras AI Institute, USA. I spend my days training neural networks, building RAG systems, and reading about eigenvalues. My long-term goal is to found my own AI company. When I'm not coding, I'm reading Hindu philosophy or dreaming about getting a pilot license.</p>
-                    <div class="stats-grid reveal">
-                        <div class="stat-card glass-card"><div class="stat-number" data-target="4">0</div><div class="stat-label">Projects Built</div></div>
-                        <div class="stat-card glass-card"><div class="stat-number" data-target="94">0</div><div class="stat-label">Model Accuracy</div></div>
-                        <div class="stat-card glass-card"><div class="stat-number" data-target="2">0</div><div class="stat-label">Degrees (Simultaneous)</div></div>
-                        <div class="stat-card glass-card"><div class="stat-number" data-target="1">0</div><div class="stat-label">Goal: Found AI Co.</div></div>
-                    </div>
-                    <div class="skills-container">
-                        <div class="skill-group"><div class="skill-group-title">🧠 Core ML</div><div class="skill-chips"><span class="skill-chip">PyTorch</span><span class="skill-chip">TensorFlow</span><span class="skill-chip">Scikit-learn</span><span class="skill-chip">HuggingFace</span><span class="skill-chip">FAISS</span></div></div>
-                        <div class="skill-group"><div class="skill-group-title">💻 Programming</div><div class="skill-chips"><span class="skill-chip">Python</span><span class="skill-chip">JavaScript</span><span class="skill-chip">Flask</span><span class="skill-chip">FastAPI</span><span class="skill-chip">SQL</span></div></div>
-                        <div class="skill-group"><div class="skill-group-title">🛠 Tools</div><div class="skill-chips"><span class="skill-chip">Git</span><span class="skill-chip">Docker</span><span class="skill-chip">Streamlit</span><span class="skill-chip">Jupyter</span><span class="skill-chip">VS Code</span></div></div>
-                        <div class="skill-group"><div class="skill-group-title">🎯 Focus Areas</div><div class="skill-chips"><span class="skill-chip">Computer Vision</span><span class="skill-chip">NLP</span><span class="skill-chip">RAG Systems</span><span class="skill-chip">Agentic AI</span><span class="skill-chip">Deep Learning</span></div></div>
-                    </div>
-                </div>
-                <div class="about-visual">
-                    <div class="profile-orbit-wrap">
-                        <div class="profile-ring profile-ring-1"></div>
-                        <div class="profile-ring profile-ring-2"></div>
-                        <div class="avatar-container"><div class="avatar-placeholder">MS</div></div>
-                        <div class="floating-badge badge-1">AI Engineer</div>
-                        <div class="floating-badge badge-2">Researcher</div>
-                        <div class="floating-badge badge-3">Builder</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Mobile Menu -->
+<div class="mobile-nav-overlay" id="mobile-menu" aria-hidden="true">
+  <ul class="mobile-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="mobile-ctas">
+    <a href="Mritunjay_Sharma_CV_2026.docx" download class="btn btn-outline" style="justify-content:center;">
+      <svg class="icon"><use href="#i-download"/></svg>Download Resume
+    </a>
+    <a href="#contact" class="btn btn-gradient" style="justify-content:center;">Hire Me</a>
+  </div>
+</div>
 
-    <section class="video-section reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;">
-                <span class="section-label">// meet_me</span>
-                <h2 class="section-title gradient-text">See Me in Action</h2>
-                <p style="max-width:600px;margin:0 auto;">A 2-minute intro — who I am, what I build, and where I'm headed.</p>
-            </div>
-            <div class="video-container-wrap">
-                <div class="video-glow-wrap">
-                    <div class="video-inner">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Introduction Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ══════════════════════════════════════════════════════
+     SECTION 1 — HERO
+══════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-scanlines"></div>
+  <div class="hero-glow"></div>
 
-    <section id="projects" class="reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;"><span class="section-label">// projects</span><h2 class="section-title gradient-text">What I've Built</h2></div>
-            <div class="filter-tabs">
-                <button class="tab-btn active" data-filter="all">All</button>
-                <button class="tab-btn" data-filter="computer-vision">Computer Vision</button>
-                <button class="tab-btn" data-filter="nlp-rag">NLP/RAG</button>
-                <button class="tab-btn" data-filter="backend">Backend</button>
-                <button class="tab-btn" data-filter="tools">Tools</button>
-                <button class="tab-btn" data-filter="web">Web</button>
-            </div>
-            <div class="projects-grid">
-                <div class="glass-card project-card" data-category="nlp-rag"><div class="project-accent-bar accent-nlp"></div><div class="project-card-body"><div class="project-header"><span class="project-category">NLP/RAG</span><span class="project-tech-badge">NLP</span></div><h3 class="project-title">Moksh AI v2.1</h3><p class="project-desc">Hybrid Agentic RAG chatbot with memory, real-time web search, and document QA.</p><div class="project-tech"><span class="project-tech-badge">Python</span><span class="project-tech-badge">LLaMA 3</span><span class="project-tech-badge">FAISS</span><span class="project-tech-badge">Streamlit</span></div><div class="project-footer"><div class="project-links"><a href="https://github.com/mritunjaySharma05" target="_blank" class="project-link"><svg class="icon"><use href="#icon-github"></use></svg></a><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-external"></use></svg></a></div><span class="project-category" style="font-size:0.7rem;">NLP/RAG</span></div></div></div>
-                <div class="glass-card project-card" data-category="computer-vision"><div class="project-accent-bar accent-cv"></div><div class="project-card-body"><div class="project-header"><span class="project-category">Computer Vision</span><span class="project-tech-badge">Vision</span></div><h3 class="project-title">Deepfake Face Detector</h3><p class="project-desc">ResNet-50 binary classifier trained on 140K images, achieving 94.05% accuracy.</p><div class="project-tech"><span class="project-tech-badge">PyTorch</span><span class="project-tech-badge">ResNet-50</span><span class="project-tech-badge">OpenCV</span></div><div class="project-footer"><div class="project-links"><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-github"></use></svg></a><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-external"></use></svg></a></div><span class="project-category" style="font-size:0.7rem;">CV</span></div></div></div>
-                <div class="glass-card project-card" data-category="backend"><div class="project-accent-bar accent-backend"></div><div class="project-card-body"><div class="project-header"><span class="project-category">Backend</span><span class="project-tech-badge">API</span></div><h3 class="project-title">Customer Churn API</h3><p class="project-desc">Production Flask REST API for churn classification, boasting ROC-AUC 0.836.</p><div class="project-tech"><span class="project-tech-badge">Flask</span><span class="project-tech-badge">Scikit-learn</span><span class="project-tech-badge">Pandas</span></div><div class="project-footer"><div class="project-links"><a href="https://github.com/mritunjaySharma05/customer-churn-api" target="_blank" class="project-link"><svg class="icon"><use href="#icon-github"></use></svg></a><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-external"></use></svg></a></div><span class="project-category" style="font-size:0.7rem;">Backend</span></div></div></div>
-                <div class="glass-card project-card" data-category="computer-vision"><div class="project-accent-bar accent-cv"></div><div class="project-card-body"><div class="project-header"><span class="project-category">Computer Vision</span><span class="project-tech-badge">CNN</span></div><h3 class="project-title">FashionNet</h3><p class="project-desc">3-block convolutional neural network achieving 93.15% accuracy on apparel classification.</p><div class="project-tech"><span class="project-tech-badge">PyTorch</span><span class="project-tech-badge">CNN</span><span class="project-tech-badge">Python</span></div><div class="project-footer"><div class="project-links"><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-github"></use></svg></a><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-external"></use></svg></a></div><span class="project-category" style="font-size:0.7rem;">CV</span></div></div></div>
-                <div class="glass-card project-card" data-category="web"><div class="project-accent-bar accent-web"></div><div class="project-card-body"><div class="project-header"><span class="project-category">Web Development</span><span class="project-tech-badge">Web</span></div><h3 class="project-title">Event Management</h3><p class="project-desc">Full-stack college registry system with admin controls, dashboards, and CRUD registration.</p><div class="project-tech"><span class="project-tech-badge">HTML/CSS</span><span class="project-tech-badge">JavaScript</span><span class="project-tech-badge">PHP</span><span class="project-tech-badge">MySQL</span></div><div class="project-footer"><div class="project-links"><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-github"></use></svg></a><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-external"></use></svg></a></div><span class="project-category" style="font-size:0.7rem;">Web</span></div></div></div>
-                <div class="glass-card project-card" data-category="tools"><div class="project-accent-bar accent-tools"></div><div class="project-card-body"><div class="project-header"><span class="project-category">Tools</span><span class="project-tech-badge">FinTech</span></div><h3 class="project-title">Market Trend Analyzer</h3><p class="project-desc">HMM regime detection engine + technical indicators mapped on dynamic Streamlit charts.</p><div class="project-tech"><span class="project-tech-badge">Python</span><span class="project-tech-badge">yfinance</span><span class="project-tech-badge">HMM</span><span class="project-tech-badge">Streamlit</span></div><div class="project-footer"><div class="project-links"><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-github"></use></svg></a><a href="#" target="_blank" class="project-link"><svg class="icon"><use href="#icon-external"></use></svg></a></div><span class="project-category" style="font-size:0.7rem;">Tools</span></div></div></div>
-            </div>
-        </div>
-    </section>
+  <div class="hero-content">
+    <div class="hero-pretitle">console.log("Hello, World 👋")</div>
 
-    <section id="research" class="reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;"><span class="section-label">// research</span><h2 class="section-title gradient-text">Research & Publications</h2></div>
-            <div class="papers-grid">
-                <div class="glass-card paper-card"><div class="paper-status-wrap"><span class="paper-status status-inprogress"><span class="status-dot" style="background-color:#F59E0B;box-shadow:0 0 10px #F59E0B;"></span>In Progress</span></div><h3 class="paper-title">Hybrid RAG Architecture for Domain-Specific AI</h3><div class="paper-tags"><span class="paper-tag">#NLP</span><span class="paper-tag">#RAG</span><span class="paper-tag">#DenseRetrieval</span></div><p class="paper-abstract">This paper explores combining dense embeddings with structured agentic web search to construct grounded, real-time QA structures. We examine mitigation parameters for hallucination events in technical domain-specific environments.</p><div class="paper-footer"><a href="#" class="paper-btn disabled">Coming Soon</a></div></div>
-                <div class="glass-card paper-card"><div class="paper-status-wrap"><span class="paper-status status-planned">Draft</span></div><h3 class="paper-title">Deepfake Detection at Scale Using Transfer Learning</h3><div class="paper-tags"><span class="paper-tag">#ComputerVision</span><span class="paper-tag">#Forensics</span><span class="paper-tag">#ResNet</span></div><p class="paper-abstract">An evaluation of fine-tuned Convolutional Networks and Vision Transformers on large-scale synthetic face datasets. The study highlights robust features invariant to structural compression and typical digital manipulation methods.</p><div class="paper-footer"><a href="#" class="paper-btn">Read Draft →</a></div></div>
-                <div class="glass-card paper-card" style="grid-column:span 2;display:flex;justify-content:center;align-items:center;min-height:200px;"><div style="text-align:center;"><span class="paper-status status-planned" style="margin-bottom:1rem;">Planned</span><h3 class="paper-title" style="max-width:100%;margin-bottom:0.5rem;">Upcoming Research — Topic TBD</h3><p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-muted);">Formulating next direction in Agentic AI and self-correcting semantic retrieval frameworks.</p></div></div>
-            </div>
-        </div>
-    </section>
+    <h1 class="hero-name">
+      <span class="hero-name-wrapper"><span id="hero-name-span">MRITUNJAY SHARMA</span></span>
+    </h1>
 
-    <section id="education" class="reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;"><span class="section-label">// education</span><h2 class="section-title gradient-text">Academic Background</h2></div>
-            <div class="edu-grid">
-                <div class="glass-card edu-card"><span class="edu-badge">Final Year 🎓</span><div class="edu-header"><div class="edu-icon-container"><svg class="icon" style="width:30px;height:30px;"><use href="#icon-cap"></use></svg></div><div class="edu-title-wrap"><h3>Bachelor of Computer Applications</h3><p>MCM DAV College, Chandigarh, India</p></div></div><div class="edu-details"><div class="edu-meta"><span><svg class="icon" style="width:14px;height:14px;"><use href="#icon-calendar"></use></svg>2022 – 2026</span><span>📍 Chandigarh, India</span></div><ul class="edu-highlights"><li>Focus on Computer Science fundamentals, DBMS, and Object-Oriented Structures.</li><li>Applied learning directly to academic CRUD portals and full-stack projects.</li><li>Maintained robust performance across academic laboratory programs.</li></ul></div></div>
-                <div class="glass-card edu-card"><span class="edu-badge">In Progress 📡</span><div class="edu-header"><div class="edu-icon-container"><svg class="icon" style="width:30px;height:30px;"><use href="#icon-terminal"></use></svg></div><div class="edu-title-wrap"><h3>AS in Artificial Intelligence</h3><p>Saras AI Institute, USA (Remote)</p></div></div><div class="edu-details"><div class="edu-meta"><span><svg class="icon" style="width:14px;height:14px;"><use href="#icon-calendar"></use></svg>2024 – 2026</span><span>📍 Remote / USA</span></div><ul class="edu-highlights"><li>Specialized coursework in Deep Learning, NLP, and advanced RAG systems.</li><li>Built multi-class neural networks and automated evaluation scripts.</li><li>Engaged in collaborative remote lab clusters replicating industry sprints.</li></ul></div></div>
-            </div>
-            <div class="roadmap-wrap">
-                <h3 class="roadmap-title gradient-text">Future Milestones</h3>
-                <div class="roadmap-timeline">
-                    <div class="roadmap-step"><div class="roadmap-node">01</div><h4>BCA Graduation</h4><p class="text-muted">2026 · MCM DAV</p></div>
-                    <div class="roadmap-step"><div class="roadmap-node">02</div><h4>MSc Machine Learning</h4><p class="text-muted">2027 · MBZUAI Application</p></div>
-                    <div class="roadmap-step"><div class="roadmap-node">03</div><h4>Found AI Company</h4><p class="text-muted">Late 2020s · Chandigarh / Global</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="hero-roles">
+      <span class="typing-cursor" id="typing-el">AI/ML Engineer</span>
+    </div>
 
-    <section id="experience" class="reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;"><span class="section-label">// experience</span><h2 class="section-title gradient-text">Professional Experience</h2></div>
-            <div class="exp-container">
-                <div class="coming-soon-card"><div class="coming-soon-border"><svg><rect x="0" y="0" rx="16" ry="16"></rect></svg></div><div class="coming-soon-icon"><svg class="icon" style="width:36px;height:36px;"><use href="#icon-rocket"></use></svg></div><h3>Actively Seeking AI/ML Internships</h3><p class="text-muted">I am targeting remote AI/ML internships and research-oriented junior roles. If you're building next-gen systems, let's connect and build together.</p><a href="#contact" class="btn btn-gradient btn-magnetic" data-glow="cyan">Get In Touch</a></div>
-            </div>
-        </div>
-    </section>
+    <p class="hero-desc">
+      Building intelligent systems that think, learn, and scale — from India to the world.
+    </p>
 
-    <section id="timeline" class="reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;"><span class="section-label">// timeline</span><h2 class="section-title gradient-text">My Journey</h2></div>
-            <div class="timeline-container">
-                <div class="timeline-line-bg"></div>
-                <div class="timeline-line-progress" id="scroll-timeline-line"></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2021</span><h4>Enrollment at MCM DAV</h4><p class="text-muted">Began Bachelor of Computer Applications program in Chandigarh, anchoring core foundations in computation theory and data systems.</p></div></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2023</span><h4>FashionNet CNN Model</h4><p class="text-muted">Programmed and trained a convolutional classifier in PyTorch, hitting 93.15% categorization accuracy on complex image matrices.</p></div></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2024</span><h4>Saras AI Institute</h4><p class="text-muted">Enrolled in parallel AS in Artificial Intelligence at Saras AI Institute, USA, formalizing knowledge in Neural networks and RAG structures.</p></div></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2024</span><h4>Customer Churn API</h4><p class="text-muted">Deployed dynamic prediction microservice using Flask, securing ROC-AUC metric of 0.836 across enterprise customer records.</p></div></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2024</span><h4>Moksh AI Launch</h4><p class="text-muted">Launched Moksh AI chatbot combining LLaMA-3 dense retrieval with agentic search parameters for high grounded-QA accuracy.</p></div></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2024</span><h4>Deepfake Classifier</h4><p class="text-muted">Fine-tuned ResNet-50 vision classifier over 140,000 synthetic facial matrices, hitting 94.05% binary precision.</p></div></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2025</span><h4>Targeting Internships</h4><p class="text-muted">Actively deploying systems, drafting papers, and seeking research positions across remote labs and AI organizations.</p></div></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2026</span><h4>Graduation & MSc Track</h4><p class="text-muted">Completing dual degree milestones, finalizing BCA graduation, and applying to research tracks at institutions like MBZUAI.</p></div></div>
-                <div class="timeline-item"><div class="timeline-node"></div><div class="glass-card timeline-card"><span class="timeline-year">2027+</span><h4>Founding AI Company</h4><p class="text-muted">Aiming to bootstrap or raise capital to establish an AI-native product lab, bringing novel RAG and vision layers to scale.</p></div></div>
-            </div>
-        </div>
-    </section>
+    <div class="hero-badge-wrap">
+      <span class="status-badge">
+        <span class="status-dot"></span>
+        Open to Remote AI/ML Internships
+      </span>
+    </div>
 
-    <section id="blog" class="reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;"><span class="section-label">// blog</span><h2 class="section-title gradient-text">Writing & Thinking</h2></div>
-            <div class="blog-grid">
-                <div class="glass-card blog-card"><div class="blog-cover blog-cover-1"><span class="blog-category-badge">Projects</span></div><div class="blog-body"><div class="blog-meta">June 2025 · 8 min read</div><h3 class="blog-title">Building a RAG Chatbot with LLaMA 3 & FAISS</h3><p class="blog-excerpt">A full walkthrough detailing vector indexing, dense passage retrieval parameter adjustments, and grounding agents against LLM hallucinations.</p><a href="#" class="blog-link">Read More →</a></div></div>
-                <div class="glass-card blog-card"><div class="blog-cover blog-cover-2"><span class="blog-category-badge">Career</span></div><div class="blog-body"><div class="blog-meta">May 2025 · 5 min read</div><h3 class="blog-title">Demystifying AI Internship Applications</h3><p class="blog-excerpt">Practical strategies, repository formatting standards, and structural recommendations to grab hiring managers' attention in highly competitive niches.</p><a href="#" class="blog-link">Read More →</a></div></div>
-                <div class="glass-card blog-card"><div class="blog-cover blog-cover-3"><span class="blog-category-badge">ML Concepts</span></div><div class="blog-body"><div class="blog-meta">April 2025 · 6 min read</div><h3 class="blog-title">The Simple Math Behind Eigenvalues</h3><p class="blog-excerpt">An intuitive exploration of spatial transformation matrices, dimensionality scaling, and mapping primary component equations in basic ML structures.</p><a href="#" class="blog-link">Read More →</a></div></div>
-                <div class="glass-card blog-card"><div class="blog-cover blog-cover-4"><span class="blog-category-badge">Career</span></div><div class="blog-body"><div class="blog-meta">March 2025 · 4 min read</div><h3 class="blog-title">Studying for MBZUAI: My Tactical System</h3><p class="blog-excerpt">How I balance dual curriculum systems, prep technical research tracks, and design daily coding projects to align with high academic requirements.</p><a href="#" class="blog-link">Read More →</a></div></div>
-                <div class="glass-card blog-card"><div class="blog-cover blog-cover-5"><span class="blog-category-badge">Philosophy</span></div><div class="blog-body"><div class="blog-meta">Feb 2025 · 7 min read</div><h3 class="blog-title">Hindu Philosophy Meets ML Systems</h3><p class="blog-excerpt">Exploring cognitive concepts, recursive pathways in Sanskrit grammar structure, and mapping their conceptual equivalents in modern recurrent neural nets.</p><a href="#" class="blog-link">Read More →</a></div></div>
-                <div class="glass-card blog-card"><div class="blog-cover blog-cover-6"><span class="blog-category-badge">Projects</span></div><div class="blog-body"><div class="blog-meta">Jan 2025 · 9 min read</div><h3 class="blog-title">From Deepfake Detector to Open Source</h3><p class="blog-excerpt">Behind the scenes of gathering synthetic dataset matrices, training ResNet pipelines, and structuring deployment endpoints for scale.</p><a href="#" class="blog-link">Read More →</a></div></div>
-            </div>
-        </div>
-    </section>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-gradient magnetic" data-glow="cyan">Explore My Work</a>
+      <a href="Mritunjay_Sharma_CV_2026.docx" download class="btn btn-outline magnetic" data-glow="violet">
+        <svg class="icon"><use href="#i-download"/></svg>Download Resume
+      </a>
+    </div>
 
-    <section id="credentials" class="reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;"><span class="section-label">// credentials</span><h2 class="section-title gradient-text">Certifications & Achievements</h2></div>
-            <div class="certs-grid">
-                <div class="glass-card cert-card"><div class="cert-icon-wrap"><svg class="icon"><use href="#icon-cap"></use></svg></div><div class="cert-info"><h4>ML Specialization</h4><p class="text-muted">Coursera / Andrew Ng</p><span class="cert-badge">In Progress</span></div></div>
-                <div class="glass-card cert-card"><div class="cert-icon-wrap"><svg class="icon"><use href="#icon-terminal"></use></svg></div><div class="cert-info"><h4>AS in Artificial Intelligence</h4><p class="text-muted">Saras AI Institute, USA</p><span class="cert-badge">In Progress</span></div></div>
-                <div class="glass-card cert-card"><div class="cert-icon-wrap"><svg class="icon"><use href="#icon-cap"></use></svg></div><div class="cert-info"><h4>BCA Degree</h4><p class="text-muted">MCM DAV College</p><span class="cert-badge">Expected 2026</span></div></div>
-                <div class="glass-card cert-card"><div class="cert-icon-wrap"><svg class="icon"><use href="#icon-globe"></use></svg></div><div class="cert-info"><h4>Portfolio Live</h4><p class="text-muted">github.io/mritunjaySharma05</p><span class="cert-badge">Active</span></div></div>
-                <div class="glass-card cert-card"><div class="cert-icon-wrap" style="color:var(--text-muted);border-color:var(--border-surface);"><svg class="icon"><use href="#icon-rocket"></use></svg></div><div class="cert-info"><h4>Kaggle Competition Rank</h4><p class="text-muted">Future Target</p><span class="cert-badge" style="color:var(--text-muted);border-color:var(--border-surface);">Upcoming</span></div></div>
-                <div class="glass-card cert-card"><div class="cert-icon-wrap" style="color:var(--text-muted);border-color:var(--border-surface);"><svg class="icon"><use href="#icon-paper"></use></svg></div><div class="cert-info"><h4>Advanced PyTorch Developer</h4><p class="text-muted">Future Target</p><span class="cert-badge" style="color:var(--text-muted);border-color:var(--border-surface);">Upcoming</span></div></div>
-            </div>
-        </div>
-    </section>
+    <div class="hero-socials">
+      <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="social-btn magnetic" data-glow="cyan" aria-label="GitHub">
+        <svg class="icon"><use href="#i-github"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/mritunjay-sharma05/" target="_blank" rel="noopener" class="social-btn magnetic" data-glow="violet" aria-label="LinkedIn">
+        <svg class="icon"><use href="#i-linkedin"/></svg>
+      </a>
+      <a href="https://x.com/Mritunjay__05" target="_blank" rel="noopener" class="social-btn magnetic" data-glow="cyan" aria-label="Twitter/X">
+        <svg class="icon"><use href="#i-twitter"/></svg>
+      </a>
+      <a href="mailto:mritunjaysharma080505@gmail.com" class="social-btn magnetic" data-glow="violet" aria-label="Email">
+        <svg class="icon"><use href="#i-email"/></svg>
+      </a>
+    </div>
+  </div>
 
-    <section id="contact" class="reveal">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:3.5rem;"><span class="section-label">// contact</span><h2 class="section-title gradient-text">Let's Build Something</h2></div>
-            <div class="contact-grid">
-                <div class="contact-info-panel">
-                    <div class="contact-pitch"><h3>Got an idea? Let's talk.</h3><p>I'm actively looking for remote AI/ML internships and research collaborations. If you're building something interesting in AI, I want to hear about it.</p><div class="status-badge" style="margin-top:1.5rem;"><span class="status-dot"></span>Available for Remote Part-Time Roles</div></div>
-                    <div class="contact-cards">
-                        <a href="mailto:your-email@gmail.com" class="glass-card contact-detail-card"><div class="contact-detail-icon"><svg class="icon"><use href="#icon-email"></use></svg></div><div class="contact-detail-text"><h5>Email</h5><p>your-email@gmail.com</p></div></a>
-                        <a href="#" class="glass-card contact-detail-card"><div class="contact-detail-icon"><svg class="icon"><use href="#icon-linkedin"></use></svg></div><div class="contact-detail-text"><h5>LinkedIn</h5><p>linkedin.com/in/mritunjaysharma</p></div></a>
-                        <a href="https://github.com/mritunjaySharma05" target="_blank" class="glass-card contact-detail-card"><div class="contact-detail-icon"><svg class="icon"><use href="#icon-github"></use></svg></div><div class="contact-detail-text"><h5>GitHub</h5><p>github.com/mritunjaySharma05</p></div></a>
-                        <a href="#" class="glass-card contact-detail-card"><div class="contact-detail-icon"><svg class="icon"><use href="#icon-globe"></use></svg></div><div class="contact-detail-text"><h5>Portfolio</h5><p>mritunjaySharma05.github.io</p></div></a>
-                    </div>
-                    <a href="#" class="btn btn-gradient btn-magnetic" style="align-self:flex-start;gap:12px;" data-glow="cyan"><svg class="icon"><use href="#icon-download"></use></svg>Download My Resume</a>
-                </div>
-                <div class="glass-card contact-form-wrap">
-                    <form class="contact-form" action="#" method="POST" id="portfolio-contact-form">
-                        <div class="form-row">
-                            <div class="form-group"><label for="form-name">Name</label><input type="text" id="form-name" class="form-input" placeholder="Your Name" required></div>
-                            <div class="form-group"><label for="form-email">Email</label><input type="email" id="form-email" class="form-input" placeholder="Your Email" required></div>
-                        </div>
-                        <div class="form-group"><label for="form-subject">Subject</label><select id="form-subject" class="form-input" required><option value="" disabled selected>Select an option</option><option value="internship">Internship Opportunity</option><option value="research">Research Collaboration</option><option value="project">Project Discussion</option><option value="hello">Just Saying Hi</option></select></div>
-                        <div class="form-group"><label for="form-message">Message</label><textarea id="form-message" class="form-input" rows="5" placeholder="Tell me about your project..." required style="resize:none;"></textarea></div>
-                        <button type="submit" class="btn btn-gradient btn-magnetic" style="justify-content:center;" data-glow="violet">Send Message<svg class="icon"><use href="#icon-arrow-right"></use></svg></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="hero-scroll">
+    <a href="#about" class="scroll-arrow" aria-label="Scroll to About">
+      <svg class="icon" style="width:28px;height:28px"><use href="#i-arrow-down"/></svg>
+    </a>
+  </div>
+</section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand"><a href="#" class="footer-logo">MS</a><p style="color:var(--text-muted);font-size:0.95rem;">Mritunjay Sharma — AI/ML Engineer and Researcher from India.</p></div>
-                <div class="footer-links-wrap"><h4>Quick Links</h4><div class="footer-links-grid"><a href="#about">About</a><a href="#projects">Projects</a><a href="#research">Research</a><a href="#education">Education</a><a href="#experience">Experience</a><a href="#contact">Contact</a></div></div>
-                <div class="footer-social-wrap"><h4>Follow Me</h4><div class="footer-socials"><a href="https://github.com/mritunjaySharma05" target="_blank" class="social-btn btn-magnetic" data-glow="cyan"><svg class="icon"><use href="#icon-github"></use></svg></a><a href="#" target="_blank" class="social-btn btn-magnetic" data-glow="violet"><svg class="icon"><use href="#icon-linkedin"></use></svg></a><a href="mailto:your-email@gmail.com" class="social-btn btn-magnetic" data-glow="cyan"><svg class="icon"><use href="#icon-email"></use></svg></a></div></div>
-            </div>
-            <div class="footer-bottom"><p class="text-muted">Designed & built by Mritunjay Sharma with obsession ⚡ · © 2025 · mritunjaySharma05.github.io</p></div>
-        </div>
-    </footer>
+<!-- ══════════════════════════════════════════════════════
+     SECTION 2 — ABOUT
+══════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const dot = document.querySelector('.custom-cursor-dot');
-            const ring = document.querySelector('.custom-cursor-ring');
-            let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-            window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px'; });
-            function animateCursor() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px'; requestAnimationFrame(animateCursor); }
-            animateCursor();
-            function setupCursorHoverListeners() { const hoverables = document.querySelectorAll('a, button, input, select, textarea, .tab-btn, .project-card, .blog-card, .social-btn, .coming-soon-card'); hoverables.forEach(el => { el.removeEventListener('mouseenter', onMouseEnter); el.removeEventListener('mouseleave', onMouseLeave); el.addEventListener('mouseenter', onMouseEnter); el.addEventListener('mouseleave', onMouseLeave); }); }
-            function onMouseEnter() { ring.classList.add('cursor-hover'); dot.classList.add('cursor-hover-dot'); }
-            function onMouseLeave() { ring.classList.remove('cursor-hover'); dot.classList.remove('cursor-hover-dot'); }
-            setupCursorHoverListeners();
-            const progressBar = document.getElementById('scroll-progress');
-            window.addEventListener('scroll', () => { const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; progressBar.style.width = (window.scrollY / docHeight * 100) + '%'; });
-            const navbar = document.getElementById('main-navbar');
-            window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 80); });
-            const nameEl = document.querySelector('.hero-name-wrapper span');
-            if (nameEl) { const text = nameEl.textContent; nameEl.innerHTML = ''; [...text].forEach((char, idx) => { const span = document.createElement('span'); span.textContent = char === ' ' ? ' ' : char; span.style.animationDelay = (0.3 + idx * 0.04) + 's'; nameEl.appendChild(span); }); }
-            const roles = ["AI/ML Engineer", "Deep Learning Researcher", "RAG Systems Builder", "Future Founder"];
-            let roleIdx = 0, charIdx = 0, isDeleting = false;
-            const typingEl = document.querySelector('.typing-text');
-            function cycleRole() { const currentRole = roles[roleIdx]; if (!isDeleting) { typingEl.textContent = currentRole.substring(0, ++charIdx); if (charIdx === currentRole.length) { isDeleting = true; return setTimeout(cycleRole, 2000); } setTimeout(cycleRole, 80); } else { typingEl.textContent = currentRole.substring(0, --charIdx); if (charIdx === 0) { isDeleting = false; roleIdx = (roleIdx + 1) % roles.length; return setTimeout(cycleRole, 400); } setTimeout(cycleRole, 45); } }
-            cycleRole();
-            const canvas = document.getElementById('hero-canvas');
-            const ctx = canvas.getContext('2d');
-            let particlesArray = [];
-            function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); }
-            window.addEventListener('resize', resizeCanvas);
-            class Particle { constructor(x, y) { this.x = x; this.y = y; this.vx = (Math.random() - 0.5) * 0.4; this.vy = (Math.random() - 0.5) * 0.4; this.radius = Math.random() * 1.5 + 0.5; } update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx; if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy; } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = 'rgba(0, 245, 255, 0.45)'; ctx.fill(); } }
-            function initParticles() { particlesArray = []; const count = Math.min(Math.max(Math.floor((canvas.width * canvas.height) / 14000), 40), 120); for (let i = 0; i < count; i++) particlesArray.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height)); }
-            function drawConnections() { for (let a = 0; a < particlesArray.length; a++) { for (let b = a + 1; b < particlesArray.length; b++) { const dist = Math.hypot(particlesArray[a].x - particlesArray[b].x, particlesArray[a].y - particlesArray[b].y); if (dist < 110) { ctx.strokeStyle = `rgba(0, 245, 255, ${0.12 * (1 - dist/110)})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(particlesArray[a].x, particlesArray[a].y); ctx.lineTo(particlesArray[b].x, particlesArray[b].y); ctx.stroke(); } } } }
-            function animateParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); particlesArray.forEach(p => { p.update(); p.draw(); }); drawConnections(); requestAnimationFrame(animateParticles); }
-            resizeCanvas(); animateParticles();
-            const reveals = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); if (entry.target.classList.contains('stats-grid')) animateStats(); } }); }, { threshold: 0.12 });
-            reveals.forEach(el => revealObserver.observe(el));
-            let statsAnimated = false;
-            function animateStats() { if (statsAnimated) return; statsAnimated = true; document.querySelectorAll('.stat-number').forEach(num => { const target = parseInt(num.getAttribute('data-target')); const duration = 1500; const startTime = performance.now(); function updateNumber(now) { const elapsed = now - startTime; const progress = Math.min(elapsed / duration, 1); const easeVal = progress * (2 - progress); const current = Math.floor(easeVal * target); if (target === 4) num.textContent = current + '+'; else if (target === 94) num.textContent = current + '%'; else if (target === 2) num.textContent = current + ' Degrees'; else num.textContent = current + ' Goal'; if (progress < 1) requestAnimationFrame(updateNumber); else { if (target === 4) num.textContent = '4+ Projects'; else if (target === 94) num.textContent = '94.05% Accuracy'; else if (target === 2) num.textContent = '2 Degrees'; else num.textContent = '1 Core Goal'; } } requestAnimationFrame(updateNumber); }); }
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-            tabButtons.forEach(btn => { btn.addEventListener('click', () => { tabButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); const filter = btn.getAttribute('data-filter'); projectCards.forEach(card => { const category = card.getAttribute('data-category'); if (filter === 'all' || category === filter) { card.style.display = 'flex'; setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1) translateY(0)'; }, 50); } else { card.style.opacity = '0'; card.style.transform = 'scale(0.95) translateY(10px)'; setTimeout(() => { card.style.display = 'none'; }, 300); } }); }); });
-            const scrollTimelinePath = document.getElementById('scroll-timeline-line');
-            const timelineContainer = document.querySelector('.timeline-container');
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const timelineObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.25 });
-            timelineItems.forEach(item => timelineObserver.observe(item));
-            window.addEventListener('scroll', () => { if (!timelineContainer) return; const rect = timelineContainer.getBoundingClientRect(); const scrolled = (window.innerHeight / 2) - rect.top; const progress = Math.max(0, Math.min(100, (scrolled / rect.height) * 100)); scrollTimelinePath.style.height = progress + '%'; });
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-            hamburgerBtn.addEventListener('click', () => { hamburgerBtn.classList.toggle('active'); mobileMenu.classList.toggle('active'); });
-            mobileLinks.forEach(link => { link.addEventListener('click', () => { hamburgerBtn.classList.remove('active'); mobileMenu.classList.remove('active'); }); });
-            const magneticButtons = document.querySelectorAll('.btn-magnetic');
-            magneticButtons.forEach(btn => { btn.addEventListener('mousemove', (e) => { const rect = btn.getBoundingClientRect(); const x = e.clientX - rect.left - (rect.width / 2); const y = e.clientY - rect.top - (rect.height / 2); btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`; const glowColor = btn.getAttribute('data-glow') === 'violet' ? '124, 58, 237' : '0, 245, 255'; btn.style.boxShadow = `0 8px 24px rgba(${glowColor}, 0.35)`; }); btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0px, 0px)'; btn.style.boxShadow = ''; }); });
-            const contactForm = document.getElementById('portfolio-contact-form');
-            if (contactForm) { contactForm.addEventListener('submit', (e) => { e.preventDefault(); const submitBtn = contactForm.querySelector('button[type="submit"]'); const originalText = submitBtn.innerHTML; submitBtn.disabled = true; submitBtn.innerHTML = 'Sending...'; setTimeout(() => { submitBtn.innerHTML = 'Message Sent! ✓'; submitBtn.style.background = '#10B981'; setTimeout(() => { contactForm.reset(); submitBtn.disabled = false; submitBtn.innerHTML = originalText; submitBtn.style.background = ''; }, 2500); }, 1200); }); }
-            const filterObserver = new MutationObserver(() => { setupCursorHoverListeners(); });
-            filterObserver.observe(document.querySelector('.projects-grid'), { childList: true, subtree: true });
-        });
-    </script>
+      <div class="about-text reveal">
+        <span class="section-label">// about_me</span>
+        <h2 class="section-title gradient-text">Who Am I?</h2>
+
+        <p class="about-bio">
+          AI and Machine Learning engineer. 20 years old. From Himachal Pradesh, India. I am completing two degrees simultaneously — a BCA at MCM DAV College and an Associate of Science in AI at Saras AI Institute, USA. I build production-grade ML systems, publish research on agentic RAG architectures, and continuously push the boundaries of what intelligent systems can do.
+        </p>
+
+        <div class="stats-grid reveal" id="stats-grid">
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-target="4" data-suffix="+ Projects">0</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-target="94" data-suffix=".05% Acc.">0</div>
+            <div class="stat-label">Best Model Accuracy</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-target="2" data-suffix=" Degrees">0</div>
+            <div class="stat-label">Degrees Simultaneously</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-target="1" data-suffix=" Paper">0</div>
+            <div class="stat-label">Research Published</div>
+          </div>
+        </div>
+
+        <div class="skills-stack">
+          <div class="skill-group">
+            <div class="skill-group-title">🧠 Core ML</div>
+            <div class="skill-chips">
+              <span class="skill-chip">PyTorch</span><span class="skill-chip">TensorFlow</span>
+              <span class="skill-chip">Scikit-learn</span><span class="skill-chip">HuggingFace</span>
+              <span class="skill-chip">FAISS</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">💻 Programming</div>
+            <div class="skill-chips">
+              <span class="skill-chip">Python</span><span class="skill-chip">C/C++</span>
+              <span class="skill-chip">Flask</span><span class="skill-chip">FastAPI</span>
+              <span class="skill-chip">SQL</span><span class="skill-chip">HTML/CSS</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">🛠 Tools</div>
+            <div class="skill-chips">
+              <span class="skill-chip">Git</span><span class="skill-chip">Docker</span>
+              <span class="skill-chip">Streamlit</span><span class="skill-chip">Jupyter</span>
+              <span class="skill-chip">VS Code</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">🎯 Focus Areas</div>
+            <div class="skill-chips">
+              <span class="skill-chip">Computer Vision</span><span class="skill-chip">NLP</span>
+              <span class="skill-chip">RAG Systems</span><span class="skill-chip">Agentic AI</span>
+              <span class="skill-chip">Deep Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual reveal-right" style="transition-delay:200ms">
+        <div class="profile-orbit-wrap">
+          <div class="orbit-ring orbit-ring-1"></div>
+          <div class="orbit-ring orbit-ring-2"></div>
+          <div class="avatar-ring">
+            <div class="avatar-initials">MS</div>
+          </div>
+          <span class="float-badge">AI Engineer</span>
+          <span class="float-badge">Researcher</span>
+          <span class="float-badge">Builder</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 3 — INTRO VIDEO
+══════════════════════════════════════════════════════ -->
+<section class="video-section reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// meet_me</span>
+      <h2 class="section-title gradient-text">See Me in Action</h2>
+      <p>A 2-minute intro — who I am, what I build, and where I'm headed.</p>
+    </div>
+    <div class="video-wrap">
+      <div class="video-border">
+        <div class="video-inner">
+          <!-- Drop your video at assets/intro.mp4 -->
+          <video id="intro-video" controls>
+            <source src="assets/intro.mp4" type="video/mp4">
+          </video>
+          <div class="video-placeholder" id="video-placeholder" style="display:none">
+            <div class="play-icon">
+              <svg class="icon" style="width:32px;height:32px"><use href="#i-play"/></svg>
+            </div>
+            <p>Place your video at <code style="color:var(--accent-cyan)">assets/intro.mp4</code></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 4 — PROJECTS
+══════════════════════════════════════════════════════ -->
+<section id="projects" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// projects</span>
+      <h2 class="section-title gradient-text">What I've Built</h2>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="tab-btn active" data-filter="all">All</button>
+      <button class="tab-btn" data-filter="computer-vision">Computer Vision</button>
+      <button class="tab-btn" data-filter="nlp-rag">NLP / RAG</button>
+      <button class="tab-btn" data-filter="backend">Backend</button>
+      <button class="tab-btn" data-filter="tools">Tools</button>
+      <button class="tab-btn" data-filter="web">Web</button>
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <article class="glass-card project-card" id="proj-moksh" data-category="nlp-rag">
+        <div class="project-accent-bar accent-nlp"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">NLP / RAG</span></div>
+          <h3 class="project-title">Moksh AI v3.0 — Hybrid Agentic RAG System</h3>
+          <p class="project-desc">Agentic AI assistant that routes queries between FAISS vector memory, DuckDuckGo web search, or hybrid mode using temporal keyword detection and L2 confidence thresholds. Dual-LLM with Llama 3 + Gemini 2.0 Flash fallback. 92% on 25-question benchmark. Research published on Zenodo.</p>
+          <div class="project-tech">
+            <span class="tech-badge">Python</span><span class="tech-badge">Llama 3</span>
+            <span class="tech-badge">FAISS</span><span class="tech-badge">all-MiniLM</span>
+            <span class="tech-badge">Streamlit</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05/Moksh-AI-Assistant" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-moksh"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card project-card" id="proj-deepfake" data-category="computer-vision">
+        <div class="project-accent-bar accent-cv"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Computer Vision</span></div>
+          <h3 class="project-title">Deepfake Face Detector</h3>
+          <p class="project-desc">ResNet-50 binary classifier trained on 140,000 face images — 94.05% test accuracy and ROC-AUC 0.98. Mixed precision on RTX 4060. Streamlit interface for real-time image and video detection with under 12ms latency per frame.</p>
+          <div class="project-tech">
+            <span class="tech-badge">PyTorch</span><span class="tech-badge">ResNet-50</span><span class="tech-badge">OpenCV</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05/Deepfake-Face-Detector" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-deepfake"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card project-card" id="proj-churn" data-category="backend">
+        <div class="project-accent-bar accent-backend"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Backend</span></div>
+          <h3 class="project-title">Customer Churn Prediction API</h3>
+          <p class="project-desc">ML pipeline on IBM Telco dataset — ROC-AUC 0.836, 80% accuracy. Production Flask REST API with batch scoring, data drift detection, and date-stamped model versioning for monthly retraining.</p>
+          <div class="project-tech">
+            <span class="tech-badge">Flask</span><span class="tech-badge">Scikit-learn</span><span class="tech-badge">Pandas</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05/customer-churn-api" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-churn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card project-card" id="proj-fashionnet" data-category="computer-vision">
+        <div class="project-accent-bar accent-cv"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Computer Vision</span></div>
+          <h3 class="project-title">FashionNet</h3>
+          <p class="project-desc">3-block CNN from scratch in PyTorch for apparel classification. Pushed accuracy from 88.2% to 93.15% using BatchNorm, Cosine LR, dropout, and label smoothing over 20 epochs. Precision, Recall, F1 all at 0.93 across 10 classes.</p>
+          <div class="project-tech">
+            <span class="tech-badge">PyTorch</span><span class="tech-badge">CNN</span><span class="tech-badge">Python</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05/FashionNet" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-fashionnet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card project-card" id="proj-events" data-category="web">
+        <div class="project-accent-bar accent-web"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Web Development</span></div>
+          <h3 class="project-title">Event Management System</h3>
+          <p class="project-desc">Full-stack college event registry with admin panel, user dashboards, and CRUD operations for event registration. PHP backend with MySQL database.</p>
+          <div class="project-tech">
+            <span class="tech-badge">HTML/CSS</span><span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">PHP</span><span class="tech-badge">MySQL</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <button class="project-link share-btn" aria-label="Share" data-id="proj-events"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- F&O MARKET TREND ANALYZER — commented out, add back when ready
+      <article class="glass-card project-card" data-category="tools">
+        <div class="project-accent-bar accent-tools"></div>
+        <div class="project-body">
+          <div class="project-header"><span class="project-category">Tools / FinTech</span></div>
+          <h3 class="project-title">F&amp;O Market Trend Analyzer</h3>
+          <p class="project-desc">HMM regime detection engine with technical indicators on a dynamic real-time Streamlit dashboard.</p>
+          <div class="project-tech">
+            <span class="tech-badge">Python</span><span class="tech-badge">yfinance</span>
+            <span class="tech-badge">HMM</span><span class="tech-badge">Streamlit</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="project-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+              <a href="#" class="project-link" aria-label="Demo"><svg class="icon"><use href="#i-external"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+      -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 5 — RESEARCH
+══════════════════════════════════════════════════════ -->
+<section id="research" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// research</span>
+      <h2 class="section-title gradient-text">Research &amp; Publications</h2>
+    </div>
+    <div class="papers-grid">
+
+      <div class="glass-card paper-card">
+        <div class="paper-status-wrap">
+          <span class="paper-status status-published">
+            <span class="status-dot" style="background:var(--accent-green);box-shadow:0 0 8px var(--accent-green)"></span>
+            Published
+          </span>
+        </div>
+        <h3 class="paper-title">Hybrid RAG Architecture for Domain-Specific Conversational AI</h3>
+        <div class="paper-tags">
+          <span class="paper-tag">#NLP</span><span class="paper-tag">#RAG</span>
+          <span class="paper-tag">#DenseRetrieval</span><span class="paper-tag">#AgenticSearch</span>
+        </div>
+        <p class="paper-abstract">Explores combining dense embeddings with structured agentic web search to build grounded, real-time QA pipelines. We examine hallucination mitigation strategies in technical domain-specific deployments.</p>
+        <div class="paper-footer"><a href="https://zenodo.org/records/20444127" target="_blank" rel="noopener" class="paper-btn">Read Paper →</a></div>
+      </div>
+
+      <div class="glass-card paper-card">
+        <div class="paper-status-wrap">
+          <span class="paper-status status-planned">Draft</span>
+        </div>
+        <h3 class="paper-title">Deepfake Detection at Scale Using Transfer Learning</h3>
+        <div class="paper-tags">
+          <span class="paper-tag">#ComputerVision</span><span class="paper-tag">#Forensics</span><span class="paper-tag">#ResNet</span>
+        </div>
+        <p class="paper-abstract">Evaluation of fine-tuned convolutional networks and Vision Transformers on large-scale synthetic face datasets. Highlights robust features invariant to compression and digital manipulation.</p>
+        <div class="paper-footer"><a href="#" class="paper-btn">Read Draft →</a></div>
+      </div>
+
+      <div class="glass-card paper-card paper-span-2" style="min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;">
+        <div>
+          <span class="paper-status status-planned" style="margin-bottom:.85rem;display:inline-flex;">Planned</span>
+          <h3 class="paper-title" style="max-width:100%;margin:.6rem 0 .4rem;">Upcoming Research — Topic TBD</h3>
+          <p style="font-family:var(--font-mono);font-size:0.82rem;">Formulating next direction in Agentic AI and self-correcting semantic retrieval frameworks.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 6 — EDUCATION
+══════════════════════════════════════════════════════ -->
+<section id="education" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// education</span>
+      <h2 class="section-title gradient-text">Academic Background</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="glass-card edu-card">
+        <span class="edu-badge">Final Year 🎓</span>
+        <div class="edu-header">
+          <div class="edu-icon"><svg class="icon" style="width:28px;height:28px"><use href="#i-cap"/></svg></div>
+          <div class="edu-title"><h3>Bachelor of Computer Applications</h3><p>MCM DAV College, Kangra, HP</p></div>
+        </div>
+        <div class="edu-meta">
+          <span><svg class="icon" style="width:13px;height:13px"><use href="#i-calendar"/></svg>2023 – 2026</span>
+          <span>📍 Kangra, Himachal Pradesh</span>
+        </div>
+        <ul class="edu-highlights">
+          <li>Core CS fundamentals — Data Structures, DBMS, Algorithms, OOP</li>
+          <li>Applied learning in full-stack CRUD portals and system design projects</li>
+          <li>Balanced demanding dual-degree schedule with strong lab performance</li>
+        </ul>
+      </div>
+      <div class="glass-card edu-card">
+        <span class="edu-badge">In Progress 📡</span>
+        <div class="edu-header">
+          <div class="edu-icon"><svg class="icon" style="width:28px;height:28px"><use href="#i-terminal"/></svg></div>
+          <div class="edu-title"><h3>AS in Artificial Intelligence</h3><p>Saras AI Institute, USA (Remote)</p></div>
+        </div>
+        <div class="edu-meta">
+          <span><svg class="icon" style="width:13px;height:13px"><use href="#i-calendar"/></svg>2025 – 2027</span>
+          <span>📍 Remote / USA</span>
+        </div>
+        <ul class="edu-highlights">
+          <li>Specialised in Deep Learning, NLP, and Advanced RAG Systems</li>
+          <li>Built multi-class neural networks and automated evaluation pipelines</li>
+          <li>Collaborative remote lab clusters replicating industry sprints</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FUTURE MILESTONES — commented out, add back when ready
+    <div class="roadmap-wrap reveal">
+      <h3 class="roadmap-title gradient-text">Future Milestones</h3>
+      <div class="roadmap-track">
+        <div class="roadmap-step"><div class="roadmap-node">01</div><h4>BCA Graduation</h4><p class="text-muted">2026 · MCM DAV</p></div>
+        <div class="roadmap-step"><div class="roadmap-node">02</div><h4>MSc Machine Learning</h4><p class="text-muted">2027 · MBZUAI Application</p></div>
+        <div class="roadmap-step"><div class="roadmap-node">03</div><h4>Found AI Company</h4><p class="text-muted">Late 2020s · India / Global</p></div>
+      </div>
+    </div>
+    -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 7 — EXPERIENCE
+══════════════════════════════════════════════════════ -->
+<section id="experience" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// experience</span>
+      <h2 class="section-title gradient-text">Professional Experience</h2>
+    </div>
+    <div class="exp-container">
+      <div class="coming-soon-card">
+        <div class="cs-border"><svg><rect x="0" y="0" width="100%" height="100%" rx="16" ry="16"/></svg></div>
+        <div class="cs-icon"><svg class="icon" style="width:36px;height:36px"><use href="#i-rocket"/></svg></div>
+        <h3>Actively Seeking AI/ML Internships</h3>
+        <p class="text-muted">Targeting remote AI/ML roles and research-oriented junior positions. If you're building next-gen systems, let's create something together.</p>
+        <a href="#contact" class="btn btn-gradient magnetic" data-glow="cyan">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 8 — TIMELINE
+══════════════════════════════════════════════════════ -->
+<section id="timeline" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// timeline</span>
+      <h2 class="section-title gradient-text">My Journey</h2>
+    </div>
+    <div class="timeline-outer">
+      <div class="tl-line-bg"></div>
+      <div class="tl-line-fill" id="tl-fill"></div>
+
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2023</span><h4>Enrolled at MCM DAV College</h4><p class="text-muted">Started BCA in Kangra, Himachal Pradesh — anchored core CS foundations across theory and lab systems.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2024</span><h4>Discovered Machine Learning</h4><p class="text-muted">Got introduced to ML concepts and the world of AI — sparked a deep fascination with intelligent systems.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2024</span><h4>Self-Taught Python</h4><p class="text-muted">Learned Python entirely through free online resources, building the foundation for all future AI/ML work.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2025</span><h4>Enrolled at Saras AI Institute, USA</h4><p class="text-muted">Began parallel AS in AI — formalised NLP, RAG, and neural architecture knowledge under structured guidance.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2025</span><h4>FashionNet — First Deep Learning Model</h4><p class="text-muted">Trained a 3-block PyTorch CNN from scratch, hitting 93.15% accuracy on apparel classification.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2025</span><h4>Moksh AI v2.1 Launched</h4><p class="text-muted">Released Hybrid Agentic RAG chatbot combining LLaMA-3 retrieval with real-time web search.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2026</span><h4>Customer Churn API Deployed</h4><p class="text-muted">Shipped production Flask microservice with ROC-AUC 0.836 on enterprise customer data.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2026</span><h4>Deepfake Classifier — 94.05% Accuracy</h4><p class="text-muted">Fine-tuned ResNet-50 over 140K synthetic faces. 94.05% binary precision on held-out test set.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2026</span><h4>Research Paper Published</h4><p class="text-muted">Published Hybrid Agentic RAG research on Zenodo — a contribution to scalable, grounded retrieval systems.</p></div></div>
+      <div class="tl-item"><div class="tl-node"></div><div class="glass-card tl-card"><span class="tl-year">2026</span><h4>Finishing BCA at MCM DAV</h4><p class="text-muted">Completing the BCA degree at MCM DAV College, Kangra — wrapping up three years of core CS foundations.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 9 — BLOG
+══════════════════════════════════════════════════════ -->
+<section id="blog" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// blog</span>
+      <h2 class="section-title gradient-text">Writing &amp; Thinking</h2>
+    </div>
+    <div class="blog-grid">
+      <div class="glass-card blog-card"><div class="blog-cover bc-1"><span class="blog-cat-badge">Projects</span></div><div class="blog-body"><div class="blog-meta">June 2025 · 8 min read</div><h3 class="blog-title">Building a RAG Chatbot with LLaMA 3 &amp; FAISS</h3><p class="blog-excerpt">Full walkthrough — vector indexing, dense retrieval tuning, and grounding agents against hallucinations.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-2"><span class="blog-cat-badge">Career</span></div><div class="blog-body"><div class="blog-meta">May 2025 · 5 min read</div><h3 class="blog-title">Demystifying AI Internship Applications</h3><p class="blog-excerpt">Practical strategies, portfolio formatting, and how to stand out in highly competitive AI roles.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-3"><span class="blog-cat-badge">ML Concepts</span></div><div class="blog-body"><div class="blog-meta">April 2025 · 6 min read</div><h3 class="blog-title">The Simple Math Behind Eigenvalues</h3><p class="blog-excerpt">Intuitive exploration of spatial transformations, dimensionality scaling, and PCA from first principles.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-4"><span class="blog-cat-badge">Career</span></div><div class="blog-body"><div class="blog-meta">March 2025 · 4 min read</div><h3 class="blog-title">Studying for MBZUAI: My Tactical System</h3><p class="blog-excerpt">How I balance dual curricula, prep research tracks, and design daily builds aligned to my goals.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-5"><span class="blog-cat-badge">Philosophy</span></div><div class="blog-body"><div class="blog-meta">Feb 2025 · 7 min read</div><h3 class="blog-title">Hindu Philosophy Meets Machine Learning</h3><p class="blog-excerpt">Mapping recursive Sanskrit grammar and cognitive concepts to modern recurrent neural nets.</p><a href="#" class="blog-link">Read More →</a></div></div>
+      <div class="glass-card blog-card"><div class="blog-cover bc-6"><span class="blog-cat-badge">Projects</span></div><div class="blog-body"><div class="blog-meta">Jan 2025 · 9 min read</div><h3 class="blog-title">From Deepfake Detector to Open Source</h3><p class="blog-excerpt">Behind the scenes — dataset curation, ResNet pipeline training, and deployment architecture.</p><a href="#" class="blog-link">Read More →</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS SECTION — commented out, add back when ready
+<section id="credentials" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// credentials</span>
+      <h2 class="section-title gradient-text">Certifications &amp; Achievements</h2>
+    </div>
+    <div class="certs-grid">
+      <div class="glass-card cert-card"><div class="cert-icon"><svg class="icon"><use href="#i-cap"/></svg></div><div class="cert-info"><h4>ML Specialization</h4><p class="text-muted">Coursera / Andrew Ng</p><span class="cert-badge">In Progress</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon"><svg class="icon"><use href="#i-terminal"/></svg></div><div class="cert-info"><h4>AS in Artificial Intelligence</h4><p class="text-muted">Saras AI Institute, USA</p><span class="cert-badge">In Progress</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon"><svg class="icon"><use href="#i-cap"/></svg></div><div class="cert-info"><h4>BCA Degree</h4><p class="text-muted">MCM DAV College</p><span class="cert-badge">Expected 2026</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon"><svg class="icon"><use href="#i-globe"/></svg></div><div class="cert-info"><h4>Portfolio Live</h4><p class="text-muted">mritunjaySharma05.github.io</p><span class="cert-badge">Active</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon" style="color:var(--text-muted);border-color:var(--border-surface)"><svg class="icon"><use href="#i-rocket"/></svg></div><div class="cert-info"><h4>Kaggle Competition Rank</h4><p class="text-muted">Future Target</p><span class="cert-badge muted">Upcoming</span></div></div>
+      <div class="glass-card cert-card"><div class="cert-icon" style="color:var(--text-muted);border-color:var(--border-surface)"><svg class="icon"><use href="#i-paper"/></svg></div><div class="cert-info"><h4>Advanced PyTorch Developer</h4><p class="text-muted">Future Target</p><span class="cert-badge muted">Upcoming</span></div></div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 11 — CONTACT
+══════════════════════════════════════════════════════ -->
+<section id="contact" class="reveal">
+  <div class="container">
+    <div class="section-intro">
+      <span class="section-label">// contact</span>
+      <h2 class="section-title gradient-text">Let's Build Something</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-panel">
+        <div class="contact-pitch">
+          <h3>Got an idea? Let's talk.</h3>
+          <p>I'm actively looking for remote AI/ML internships and research collaborations. If you're building something interesting in AI, I want to hear about it.</p>
+          <div class="status-badge" style="margin-top:1.5rem;"><span class="status-dot"></span>Available for Remote Part-Time Roles</div>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:mritunjaysharma080505@gmail.com" class="glass-card contact-link-card">
+            <div class="cl-icon"><svg class="icon"><use href="#i-email"/></svg></div>
+            <div class="cl-text"><h5>Email</h5><p>mritunjaysharma080505@gmail.com</p></div>
+          </a>
+          <a href="https://www.linkedin.com/in/mritunjay-sharma05/" target="_blank" rel="noopener" class="glass-card contact-link-card">
+            <div class="cl-icon"><svg class="icon"><use href="#i-linkedin"/></svg></div>
+            <div class="cl-text"><h5>LinkedIn</h5><p>linkedin.com/in/mritunjay-sharma05</p></div>
+          </a>
+          <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="glass-card contact-link-card">
+            <div class="cl-icon"><svg class="icon"><use href="#i-github"/></svg></div>
+            <div class="cl-text"><h5>GitHub</h5><p>github.com/mritunjaySharma05</p></div>
+          </a>
+          <a href="https://x.com/Mritunjay__05" target="_blank" rel="noopener" class="glass-card contact-link-card">
+            <div class="cl-icon"><svg class="icon"><use href="#i-twitter"/></svg></div>
+            <div class="cl-text"><h5>Twitter / X</h5><p>@Mritunjay__05</p></div>
+          </a>
+        </div>
+        <a href="Mritunjay_Sharma_CV_2026.docx" download class="btn btn-gradient magnetic" style="align-self:flex-start" data-glow="cyan">
+          <svg class="icon"><use href="#i-download"/></svg>Download My Resume
+        </a>
+      </div>
+
+      <div class="glass-card form-wrap">
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-name">Name</label>
+              <input type="text" id="f-name" name="name" class="form-input" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" name="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-subject">Subject</label>
+            <select id="f-subject" name="subject" class="form-input" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="internship">Internship Opportunity</option>
+              <option value="research">Research Collaboration</option>
+              <option value="project">Project Discussion</option>
+              <option value="hello">Just Saying Hi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" class="form-input" rows="5" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gradient magnetic" style="justify-content:center;width:100%" data-glow="violet">
+            Send Message <svg class="icon"><use href="#i-arrow-right"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="footer-logo">MS</a>
+        <p>Mritunjay Sharma — AI/ML Engineer and Researcher from Kangra, HP, India.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
+          <a href="https://www.linkedin.com/in/mritunjay-sharma05/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+          <a href="https://x.com/Mritunjay__05" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter/X"><svg class="icon"><use href="#i-twitter"/></svg></a>
+          <a href="mailto:mritunjaysharma080505@gmail.com" class="social-btn" aria-label="Email"><svg class="icon"><use href="#i-email"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links-grid">
+          <a href="#about">About</a><a href="#projects">Projects</a>
+          <a href="#research">Research</a><a href="#education">Education</a>
+          <a href="#experience">Experience</a><a href="#blog">Blog</a>
+          <a href="#credentials">Certifications</a><a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Currently</h4>
+        <div class="status-badge" style="margin-bottom:1rem;"><span class="status-dot"></span>Open to Internships</div>
+        <p style="font-size:0.85rem;line-height:1.7;">Building at the intersection of RAG systems, computer vision, and agentic AI.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-muted">Designed &amp; built by Mritunjay Sharma with obsession ⚡ · © 2025 · mritunjaySharma05.github.io</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cursor.js" defer></script>
+<script src="js/hero.js"   defer></script>
+<script src="js/app.js"    defer></script>
 </body>
 </html>
