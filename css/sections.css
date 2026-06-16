@@ -667,6 +667,16 @@
 /* ============================================================
    BLOG
    ============================================================ */
+.blog-coming-soon {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.blog-cs-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
+.blog-coming-soon h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+.blog-coming-soon p { font-size: 0.95rem; line-height: 1.7; }
+
 .blog-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
