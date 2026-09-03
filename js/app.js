@@ -190,4 +190,62 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  /* ── HASHNODE BLOG FEED ───────────────────────────────── */
+  const blogGrid     = document.getElementById('blog-grid');
+  const blogFallback = document.getElementById('blog-fallback');
+  const blogViewAll  = document.getElementById('blog-view-all');
+
+  if (blogGrid) {
+    const RSS_URL  = 'https://mritunjaysharma05.hashnode.dev/rss.xml';
+    const FEED_API = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+    const MAX_POSTS = 3;
+
+    const truncate = (text, max) => {
+      if (text.length <= max) return text;
+      const cut = text.slice(0, max);
+      return cut.slice(0, cut.lastIndexOf(' ')) + '…';
+    };
+
+    fetch(FEED_API)
+      .then(res => res.json())
+      .then(data => {
+        if (data.status !== 'ok' || !data.items || !data.items.length) return;
+
+        data.items.slice(0, MAX_POSTS).forEach(item => {
+          const card = document.createElement('article');
+          card.className = 'glass-card blog-card';
+
+          const date = document.createElement('span');
+          date.className = 'blog-card-date';
+          const d = new Date((item.pubDate || '').split(' ')[0]);
+          date.textContent = isNaN(d) ? '' : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+          const title = document.createElement('h3');
+          title.className = 'blog-card-title';
+          title.textContent = item.title || '';
+
+          const excerpt = document.createElement('p');
+          excerpt.className = 'blog-card-excerpt';
+          const raw = (item.description || '').replace(/<[^>]*>/g, '').trim();
+          excerpt.textContent = truncate(raw, 140);
+
+          const link = document.createElement('a');
+          link.className = 'blog-card-link';
+          link.href   = item.link;
+          link.target = '_blank';
+          link.rel    = 'noopener';
+          link.innerHTML = 'Read Article <svg class="icon"><use href="#i-arrow-right"/></svg>';
+
+          card.append(date, title, excerpt, link);
+          blogGrid.appendChild(card);
+        });
+
+        blogGrid.hidden = false;
+        if (blogFallback) blogFallback.hidden = true;
+        if (blogViewAll)  blogViewAll.hidden  = false;
+      })
+      .catch(() => { /* rss2json unreachable or feed empty — fallback card stays visible */ });
+  }
+
 });
