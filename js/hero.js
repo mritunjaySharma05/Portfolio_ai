@@ -61,11 +61,32 @@
   if (!nameSpan) return;
   const text = nameSpan.textContent;
   nameSpan.textContent = '';
-  [...text].forEach((ch, i) => {
-    const s = document.createElement('span');
-    s.textContent      = ch === ' ' ? ' ' : ch;
-    s.style.animationDelay = `${0.35 + i * 0.038}s`;
-    nameSpan.appendChild(s);
+  // Letters are grouped per word (in a nowrap wrapper) so the line can
+  // only break at real spaces between words, not between arbitrary
+  // adjacent letter-spans -- otherwise wrapping mid-word (e.g. "SHAR" /
+  // "MA") is possible once the wrapper is allowed to wrap on mobile.
+  let i = 0;
+  text.split(' ').forEach((word, wi, words) => {
+    const wordWrap = document.createElement('span');
+    wordWrap.className = 'hero-word';
+    [...word].forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'hero-letter';
+      s.textContent = ch;
+      s.style.animationDelay = `${0.35 + i * 0.038}s`;
+      wordWrap.appendChild(s);
+      i++;
+    });
+    nameSpan.appendChild(wordWrap);
+
+    if (wi < words.length - 1) {
+      const space = document.createElement('span');
+      space.className = 'hero-letter';
+      space.textContent = ' ';
+      space.style.animationDelay = `${0.35 + i * 0.038}s`;
+      nameSpan.appendChild(space);
+      i++;
+    }
   });
 })();
 

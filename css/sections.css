@@ -74,7 +74,11 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.hero-name-wrapper span {
+/* Groups each word's letters so a line break can only happen between
+   words, never inside one — the reveal animation itself lives on the
+   individual .hero-letter spans, not this wrapper. */
+.hero-word { display: inline-block; white-space: nowrap; }
+.hero-letter {
   display: inline-block;
   opacity: 0;
   transform: translateY(110%) skewY(3deg);
@@ -267,6 +271,20 @@
 .float-badge:nth-child(5) { bottom:10px; right:-85px; border-color:var(--accent-violet); color:var(--accent-violet); animation-delay:.9s; animation-duration:6s; }
 .float-badge:nth-child(6) { top:110px;  right:-90px; border-color:var(--accent-coral);  color:var(--accent-coral); animation-delay:.45s; animation-duration:4.5s; }
 @keyframes float-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* The float-badges sit 30-90px outside the orbit ring by design (a
+   desktop flourish) and the outer ring itself is 380px wide — both
+   safely clip on mobile now that overflow-x is strict, instead of
+   quietly widening the page like before. Shrink the whole visual and
+   drop the badges rather than try to keep them on-screen. */
+@media (max-width: 640px) {
+  .profile-orbit-wrap { width:180px; height:180px; }
+  .orbit-ring-1 { width:210px; height:210px; }
+  .orbit-ring-2 { width:240px; height:240px; }
+  .avatar-ring  { width:150px; height:150px; }
+  .avatar-initials { font-size:2.1rem; }
+  .float-badge  { display:none; }
+}
 
 /* ============================================================
    VIDEO SECTION
@@ -820,8 +838,9 @@
   color:var(--accent-violet);
   flex-shrink:0;
 }
+.cert-info    { min-width:0; }
 .cert-info h4 { font-size:1rem; margin-bottom:2px; }
-.cert-info p  { font-size:0.82rem; margin-bottom:6px; }
+.cert-info p  { font-size:0.82rem; margin-bottom:6px; overflow-wrap:break-word; }
 .cert-badge {
   font-family:var(--font-mono); font-size:0.68rem;
   color:var(--accent-cyan);
@@ -865,11 +884,12 @@
   border-color:var(--accent-cyan);
   box-shadow:0 0 14px rgba(0,245,255,.2);
 }
+.cl-text { min-width:0; }
 .cl-text h5 {
   font-family:var(--font-mono); font-size:0.72rem;
   color:var(--accent-cyan); text-transform:uppercase; letter-spacing:.06em;
 }
-.cl-text p { font-size:0.92rem; color:var(--text-main); font-weight:500; }
+.cl-text p { font-size:0.92rem; color:var(--text-main); font-weight:500; overflow-wrap:break-word; }
 
 /* Contact form */
 .form-wrap { padding:clamp(24px,5vw,40px); }
