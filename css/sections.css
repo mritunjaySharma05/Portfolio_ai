@@ -147,6 +147,16 @@
 }
 @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(9px)} }
 
+/* Below ~640px, "MRITUNJAY SHARMA" and the hero sentence no longer fit
+   on one unbreakable line at any legible size — forcing nowrap here
+   pushed real content past the viewport edge and widened the whole
+   page horizontally. Let both wrap on narrow screens instead. */
+@media (max-width: 640px) {
+  .hero-name-wrapper { white-space: normal; }
+  .hero-name { width: 100%; left: 0; transform: none; }
+  .hero-desc { white-space: normal; }
+}
+
 /* ============================================================
    ABOUT
    ============================================================ */

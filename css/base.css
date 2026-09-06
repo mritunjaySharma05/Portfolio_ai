@@ -43,6 +43,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: rgba(0,245,255,0.4) var(--bg-base-darker);
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar       { width: 6px; }
