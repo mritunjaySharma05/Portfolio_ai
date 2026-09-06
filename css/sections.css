@@ -187,15 +187,16 @@
   gap: 1.25rem;
   margin-bottom: 2.5rem;
 }
-.stat-card { padding: 20px 18px; text-align: center; }
+.stat-card { padding: 20px 18px; text-align: center; overflow: hidden; }
 .stat-number {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 6vw, 2rem);
   font-weight: 800;
   color: var(--accent-cyan);
   margin-bottom: 4px;
   text-shadow: 0 0 14px rgba(0,245,255,0.2);
   line-height: 1.2;
+  overflow-wrap: break-word;
 }
 .stat-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
 
@@ -276,14 +277,18 @@
    desktop flourish) and the outer ring itself is 380px wide — both
    safely clip on mobile now that overflow-x is strict, instead of
    quietly widening the page like before. Shrink the whole visual and
-   drop the badges rather than try to keep them on-screen. */
+   pull the badges in closer (smaller offsets + smaller badge itself)
+   so they stay on-screen instead of being hidden outright. */
 @media (max-width: 640px) {
   .profile-orbit-wrap { width:180px; height:180px; }
   .orbit-ring-1 { width:210px; height:210px; }
   .orbit-ring-2 { width:240px; height:240px; }
   .avatar-ring  { width:150px; height:150px; }
   .avatar-initials { font-size:2.1rem; }
-  .float-badge  { display:none; }
+  .float-badge  { font-size:0.62rem; padding:5px 9px; }
+  .float-badge:nth-child(4) { top:-8px;   left:-14px; }
+  .float-badge:nth-child(5) { bottom:-4px; right:-10px; }
+  .float-badge:nth-child(6) { top:58px;   right:-14px; }
 }
 
 /* ============================================================
