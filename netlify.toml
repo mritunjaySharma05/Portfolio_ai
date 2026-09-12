@@ -1,6 +1,3 @@
 # No redirects needed — Netlify serves index.html at "/" by default.
 # (Previous rule redirected "/" to a since-renamed "portfolio.html", which
 # no longer exists and would have 404'd the homepage.)
-
-[functions]
-  directory = "netlify/functions"
