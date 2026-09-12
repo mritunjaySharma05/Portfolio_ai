@@ -205,40 +205,38 @@ document.addEventListener('DOMContentLoaded', () => {
       return cut.slice(0, cut.lastIndexOf(' ')) + '…';
     };
 
-    const textOf = (parent, tag) => parent.querySelector(tag)?.textContent?.trim() || '';
-
-    // Same-origin Netlify Function (netlify/functions/blog-feed.js) fetches
-    // the RSS feed server-side with a short (2 min) cache we control —
-    // avoids both the CORS problem and the 30-min stale cache a public
-    // RSS→JSON proxy would otherwise impose.
+    // Same-origin Netlify Function (netlify/functions/blog-feed.js) reads
+    // from Netlify Blobs, populated by blog-webhook.js whenever Hashnode
+    // notifies us of a new/updated post. We don't fetch Hashnode directly
+    // — its Cloudflare protection blocks all automated requests to the
+    // blog (curl, serverless fetches, RSS→JSON proxies, all of it), so
+    // pushing data to us on publish is the only thing that works.
     fetch('/.netlify/functions/blog-feed')
-      .then(res => res.ok ? res.text() : Promise.reject())
-      .then(xml => {
-        const doc   = new DOMParser().parseFromString(xml, 'application/xml');
-        const items = Array.from(doc.querySelectorAll('item')).slice(0, MAX_POSTS);
-        if (!items.length) return;
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(({ posts }) => {
+        if (!posts || !posts.length) return;
 
-        items.forEach(item => {
+        posts.slice(0, MAX_POSTS).forEach(post => {
           const card = document.createElement('article');
           card.className = 'glass-card blog-card';
 
           const date = document.createElement('span');
           date.className = 'blog-card-date';
-          const d = new Date(textOf(item, 'pubDate'));
+          const d = new Date(post.publishedAt || '');
           date.textContent = isNaN(d) ? '' : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
           const title = document.createElement('h3');
           title.className = 'blog-card-title';
-          title.textContent = textOf(item, 'title');
+          title.textContent = post.title || '';
 
           const excerpt = document.createElement('p');
           excerpt.className = 'blog-card-excerpt';
-          const raw = textOf(item, 'description').replace(/<[^>]*>/g, '').trim();
+          const raw = (post.excerpt || '').replace(/<[^>]*>/g, '').trim();
           excerpt.textContent = truncate(raw, 140);
 
           const link = document.createElement('a');
           link.className = 'blog-card-link';
-          link.href   = textOf(item, 'link');
+          link.href   = post.url || '#';
           link.target = '_blank';
           link.rel    = 'noopener';
           link.innerHTML = 'Read Article <svg class="icon"><use href="#i-arrow-right"/></svg>';
@@ -251,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (blogFallback) blogFallback.hidden = true;
         if (blogViewAll)  blogViewAll.hidden  = false;
       })
-      .catch(() => { /* function unreachable (e.g. local file preview) or feed empty — fallback card stays visible */ });
+      .catch(() => { /* function unreachable (e.g. local file preview) or no posts stored yet — fallback card stays visible */ });
   }
 
 });

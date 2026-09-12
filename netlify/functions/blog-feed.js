@@ -1,26 +1,27 @@
-// Fetches the Hashnode RSS feed server-side and passes it straight through.
-// Runs same-origin with the site, so the browser needs no CORS proxy, and we
-// control the cache window ourselves (short, so new posts show up fast)
-// instead of relying on a third-party proxy's own caching policy.
+// Serves the blog post list the portfolio displays. Reads from Netlify
+// Blobs, populated by blog-webhook.js whenever Hashnode notifies us of
+// a publish/update/delete — we don't fetch Hashnode directly here.
+//
+// (Previously this function fetched https://mritunjaysharma05.hashnode.dev
+// /rss.xml server-side, but Hashnode's Cloudflare protection now blocks
+// every automated request to the blog with a bot-challenge page, so that
+// approach stopped working entirely. Blobs + webhook sidesteps it.)
 
-const RSS_URL = 'https://mritunjaysharma05.hashnode.dev/rss.xml';
+const { getStore } = require('@netlify/blobs');
 
 exports.handler = async function () {
   try {
-    const res = await fetch(RSS_URL);
-    if (!res.ok) {
-      return { statusCode: 502, body: 'Upstream feed error' };
-    }
-    const body = await res.text();
+    const store = getStore('blog');
+    const posts = (await store.get('posts', { type: 'json' })) || [];
     return {
       statusCode: 200,
       headers: {
-        'Content-Type': 'application/xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=120, s-maxage=120',
+        'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'no-store',
       },
-      body,
+      body: JSON.stringify({ posts }),
     };
   } catch (err) {
-    return { statusCode: 502, body: 'Fetch failed' };
+    return { statusCode: 502, body: JSON.stringify({ posts: [] }) };
   }
 };
