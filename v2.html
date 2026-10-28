@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mritunjay Sharma | AI/ML Engineer</title>
+<meta name="description" content="Mritunjay Sharma — AI/ML Engineer and published researcher building agentic RAG systems, deep learning models, and production data pipelines.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235b5ce2'%3E%3Cpath d='M12 2L2 22h20L12 2zm0 4l6.5 13h-13L12 6z'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f5f7fb;--surface:#fff;--text:#111827;--muted:#667085;
+  --line:#e6e9ef;--accent:#5b5ce2;--accent2:#7c3aed;--soft:#eef0ff;
+  --dark:#111827;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--text);overflow-x:hidden;
+     font:15px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.container{max-width:1120px;margin:auto;padding:0 24px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(245,247,251,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(230,233,239,.8)}
+.nav-inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:800;letter-spacing:-.4px}
+.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:24px;font-size:14px;color:#475467}
+.navlinks a:hover{color:var(--accent)}
+
+/* hero */
+.hero{padding:72px 0 42px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.75fr);gap:50px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:750;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+h1{font-size:clamp(40px,7vw,76px);line-height:1.04;letter-spacing:-3px;margin:15px 0}
+.hero h1 span{color:var(--accent)}
+.hero-copy{font-size:18px;color:#475467;max-width:720px}
+.buttons{display:flex;gap:12px;margin:28px 0 22px;flex-wrap:wrap}
+.btn{padding:11px 17px;border-radius:10px;border:1px solid var(--line);font-weight:700;background:var(--surface);
+     transition:transform .15s ease,box-shadow .2s ease}
+.btn.primary{background:var(--dark);color:#fff;border-color:var(--dark)}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(17,24,39,.08)}
+.social{display:flex;gap:18px;color:#667085;font-weight:650;font-size:14px;flex-wrap:wrap}
+.social a:hover{color:var(--accent)}
+.profile-card{background:var(--dark);color:#fff;border-radius:24px;padding:25px;box-shadow:0 18px 45px rgba(17,24,39,.12)}
+.avatar{height:200px;border-radius:17px;background:linear-gradient(135deg,#dfe3ff,#8d91ef);display:grid;place-items:center;font-size:64px;font-weight:800;color:#fff;letter-spacing:-2px}
+.profile-card h3{margin:20px 0 2px;font-size:21px}
+.profile-card p{margin:0;color:#c7cedb;font-size:14px}
+.mini-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:18px}
+.stat{background:rgba(255,255,255,.08);border-radius:12px;padding:12px;min-width:0}
+.stat b{display:block;font-size:19px;letter-spacing:-.5px}
+.stat small{color:#aeb7c7;font-size:12px}
+
+/* sections */
+.section{padding:35px 0}
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:20px;flex-wrap:wrap}
+.kicker{font-size:12px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:1.2px}
+h2{font-size:clamp(26px,4vw,31px);letter-spacing:-1px;margin:4px 0}
+.section-intro{color:var(--muted);max-width:620px}
+.muted{color:var(--muted)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:21px;display:flex;flex-direction:column;
+      transition:box-shadow .2s ease,transform .15s ease}
+.card:hover{box-shadow:0 12px 30px rgba(17,24,39,.06);transform:translateY(-2px)}
+.project-number{font-size:12px;color:var(--accent);font-weight:800;letter-spacing:.4px}
+.card h3{margin:7px 0 8px;font-size:19px;letter-spacing:-.3px}
+.card p{margin:0}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}
+.tag{background:var(--soft);color:#4546a8;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:700}
+.card-link{font-weight:800;color:var(--accent);font-size:13px;margin-top:auto}
+.card-link:hover{color:var(--accent2)}
+
+/* panels */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0}
+.panel h3{margin:0 0 8px;font-size:18px}
+.panel p{margin:0 0 14px}
+.skill-group{margin:17px 0}
+.skill-group strong{display:block;margin-bottom:8px;font-size:14px}
+
+/* research */
+.paper{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.paper-badge{background:#eafaf1;color:#067647;border:1px solid #b7e4c7;border-radius:99px;padding:4px 11px;font-size:12px;font-weight:800;white-space:nowrap}
+.paper-body{flex:1;min-width:0}
+.paper-body h3{font-size:20px;margin:10px 0 8px;letter-spacing:-.3px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.metric{background:var(--soft);border-radius:12px;padding:13px;min-width:0}
+.metric b{display:block;font-size:20px;color:var(--accent);letter-spacing:-.5px}
+.metric small{color:var(--muted);font-size:12px}
+
+/* timeline */
+.timeline{border-left:2px solid var(--line);padding-left:20px;margin-left:4px}
+.timeline-item{position:relative;margin-bottom:25px}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-item:before{content:"";position:absolute;left:-27px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.timeline-item h3{margin:0;font-size:17px}
+.timeline-item small{color:var(--muted)}
+.timeline-item p{margin:6px 0 0}
+
+/* achievements */
+.ach-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.achievement{display:flex;gap:15px;align-items:flex-start}
+.achievement h3{margin:0 0 4px;font-size:17px}
+.achievement p{margin:0}
+.achievement > div{min-width:0}
+.icon{width:42px;height:42px;border-radius:12px;background:var(--soft);display:grid;place-items:center;color:var(--accent);font-weight:900;flex-shrink:0;font-size:18px}
+
+/* writing */
+.post-cover{height:150px;border-radius:14px;background:var(--dark);display:grid;place-items:center;overflow:hidden;margin:-4px 0 14px}
+.post-cover img{width:100%;height:100%;object-fit:contain;padding:18px}
+.post-cover img.fill{object-fit:cover;padding:0}
+
+/* contact */
+.contact{background:var(--dark);color:#fff;border-radius:24px;padding:clamp(26px,5vw,42px)}
+.contact h2{margin:6px 0 10px}
+.contact p{color:#c7cedb;max-width:650px}
+.contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.contact .btn{background:#fff;border-color:#fff;color:var(--dark)}
+.contact-mail{overflow-wrap:break-word}
+
+footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
+
+@media(max-width:850px){
+ .hero-grid,.about-grid{grid-template-columns:minmax(0,1fr)}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .navlinks{display:none}
+}
+@media(max-width:560px){
+ .hero{padding-top:45px}
+ .hero h1{letter-spacing:-1.5px}
+ .cards,.ach-grid,.metrics{grid-template-columns:minmax(0,1fr)}
+ .container{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+ <div class="container nav-inner">
+  <a class="logo" href="#">MRITUNJAY<span>.</span></a>
+  <div class="navlinks">
+   <a href="#projects">Projects</a><a href="#research">Research</a><a href="#about">About</a>
+   <a href="#journey">Journey</a><a href="#writing">Writing</a><a href="#contact">Contact</a>
+  </div>
+ </div>
+</nav>
+
+<main>
+
+<!-- ───────────────────────── HERO ───────────────────────── -->
+<section class="hero">
+ <div class="container hero-grid">
+  <div>
+   <div class="eyebrow"><span class="dot"></span> Open to AI/ML internships</div>
+   <h1>Building intelligent systems that <span>think, learn, and scale.</span></h1>
+   <p class="hero-copy">AI and Machine Learning engineer working on agentic RAG architectures, deep learning, and production data pipelines. I publish research, ship working systems, and care more about what actually runs than what demos well.</p>
+   <div class="buttons">
+    <a class="btn primary" href="#projects">Explore my projects →</a>
+    <a class="btn" href="Mritunjay_Sharma_CV.pdf" download>Download Resume</a>
+   </div>
+   <div class="social">
+    <a href="https://www.linkedin.com/in/mritunjay-sharma05/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://x.com/Mritunjay__05" target="_blank" rel="noopener">X ↗</a>
+    <a href="mailto:mritunjaysharma080505@gmail.com">Email ↗</a>
+   </div>
+  </div>
+  <aside class="profile-card">
+   <div class="avatar">MS</div>
+   <h3>Mritunjay Sharma</h3><p>AI/ML Engineer · Delhi, India</p>
+   <div class="mini-stats">
+    <div class="stat"><b>8</b><small>Projects built</small></div>
+    <div class="stat"><b>94.05%</b><small>Best model accuracy</small></div>
+    <div class="stat"><b>1</b><small>Paper published</small></div>
+    <div class="stat"><b>2</b><small>Academic degrees</small></div>
+   </div>
+  </aside>
+ </div>
+</section>
+
+<!-- ───────────────────────── PROJECTS ───────────────────────── -->
+<section class="section" id="projects">
+ <div class="container">
+  <div class="section-head">
+   <div><div class="kicker">01 · Projects</div><h2>Proof of work.</h2></div>
+   <div class="section-intro">Eight systems built end to end — from research prototypes to automated pipelines running on a schedule.</div>
+  </div>
+  <div class="cards">
+
+   <article class="card">
+    <div class="project-number">01 / FEATURED · NLP / RAG</div>
+    <h3>Moksh AI v3.0 — Hybrid Agentic RAG</h3>
+    <p class="muted">Agentic assistant that routes queries between FAISS vector memory, web search, or hybrid mode using temporal keyword detection and L2 confidence thresholds. Dual-LLM with Llama 3 + Gemini 2.0 Flash fallback. 92% on a 25-question benchmark, and the basis of my published paper.</p>
+    <div class="tags"><span class="tag">Python</span><span class="tag">Llama 3</span><span class="tag">FAISS</span><span class="tag">Streamlit</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05/Moksh-AI-Assistant" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+   <article class="card">
+    <div class="project-number">02 / COMPUTER VISION</div>
+    <h3>Deepfake Face Detector</h3>
+    <p class="muted">ResNet-50 binary classifier trained on 140,000 face images — 94.05% test accuracy, ROC-AUC 0.98. Mixed-precision training on an RTX 4060, with a Streamlit interface doing real-time image and video detection under 12ms per frame.</p>
+    <div class="tags"><span class="tag">PyTorch</span><span class="tag">ResNet-50</span><span class="tag">OpenCV</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05/Deepfake-Face-Detector" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+   <article class="card">
+    <div class="project-number">03 / DATA ENGINEERING</div>
+    <h3>Earthquake &amp; Weather Crisis Pipeline</h3>
+    <p class="muted">Automated Snowflake platform merging live USGS earthquake data with Open-Meteo weather to flag when conditions could complicate rescue efforts. Hourly Tasks, MERGE-based dedup, data-quality checks, and a live Streamlit-in-Snowflake dashboard.</p>
+    <div class="tags"><span class="tag">Snowflake</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Streamlit</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05/earthquake-crisis-pipeline" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+   <article class="card">
+    <div class="project-number">04 / AGENTS</div>
+    <h3>FastMCP × PydanticAI Research Agent</h3>
+    <p class="muted">Conversational ReAct research agent built with PydanticAI, connected to a FastMCP server for search, fetch, and note-taking tools. Pipelines findings through synthesis and PII screening, writing incrementally so partial results survive a mid-run failure.</p>
+    <div class="tags"><span class="tag">PydanticAI</span><span class="tag">FastMCP</span><span class="tag">Gemini</span><span class="tag">SQLite</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05/fastmcp-agent" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+   <article class="card">
+    <div class="project-number">05 / BACKEND · ML</div>
+    <h3>Customer Churn Prediction API</h3>
+    <p class="muted">ML pipeline on the IBM Telco dataset — ROC-AUC 0.836, 80% accuracy. Production Flask REST API with batch scoring, data drift detection, and date-stamped model versioning for monthly retraining.</p>
+    <div class="tags"><span class="tag">Flask</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05/customer-churn-api" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+   <article class="card">
+    <div class="project-number">06 / GENERATIVE AI</div>
+    <h3>AI Image Editor</h3>
+    <p class="muted">Streamlit app for editing and organizing photos through natural language instead of Photoshop-style tools — auto-captioning, typed-instruction edits, and semantic search over the library, all powered by Gemini.</p>
+    <div class="tags"><span class="tag">Python</span><span class="tag">Gemini API</span><span class="tag">Embeddings</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05/Ai-image-editor" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+   <article class="card">
+    <div class="project-number">07 / DEEP LEARNING</div>
+    <h3>FashionNet</h3>
+    <p class="muted">3-block CNN written from scratch in PyTorch for apparel classification. Pushed accuracy from 88.2% to 93.15% through BatchNorm, cosine LR scheduling, dropout, and label smoothing — Precision, Recall and F1 all at 0.93 across 10 classes.</p>
+    <div class="tags"><span class="tag">PyTorch</span><span class="tag">CNN</span><span class="tag">Python</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05/FashionNet" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+   <article class="card">
+    <div class="project-number">08 / WEB</div>
+    <h3>Event Management System</h3>
+    <p class="muted">Full-stack college event registry with an admin panel, user dashboards, and CRUD operations for event registration, backed by a MySQL database.</p>
+    <div class="tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">MySQL</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+  </div>
+ </div>
+</section>
+
+<!-- ───────────────────────── RESEARCH ───────────────────────── -->
+<section class="section" id="research">
+ <div class="container">
+  <div class="section-head">
+   <div><div class="kicker">02 · Research</div><h2>Published work.</h2></div>
+   <div class="section-intro">Peer-readable research on agentic retrieval, published openly on Zenodo.</div>
+  </div>
+  <div class="panel">
+   <div class="paper">
+    <div class="paper-body">
+     <span class="paper-badge">● Published · Zenodo 2026</span>
+     <h3>Moksh AI v3.0: An Agentic Hybrid Retrieval-Augmented Generation System with Explicit Query Routing and Dual-LLM Architecture</h3>
+     <p class="muted">Proposes an explicit agentic retrieval decision layer that routes queries between vector memory, live web search, and a hybrid path — rather than retrieving blindly on every turn. Pairs a local Llama 3 with a Gemini 2.0 Flash cloud fallback for zero-downtime operation, with autonomous background memory extraction.</p>
+     <div class="metrics">
+      <div class="metric"><b>92%</b><small>Accuracy on 25-question benchmark</small></div>
+      <div class="metric"><b>+28pp</b><small>Over the 64% baseline</small></div>
+      <div class="metric"><b>5</b><small>Benchmark categories</small></div>
+     </div>
+     <div class="tags"><span class="tag">RAG</span><span class="tag">Agentic AI</span><span class="tag">Dense Retrieval</span><span class="tag">Dual-LLM</span></div>
+     <a class="card-link" href="https://zenodo.org/records/20444127" target="_blank" rel="noopener">Read the paper →</a>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ───────────────────────── ABOUT ───────────────────────── -->
+<section class="section" id="about">
+ <div class="container">
+  <div class="section-head"><div><div class="kicker">03 · About</div><h2>Who I am.</h2></div></div>
+  <div class="about-grid">
+   <div class="panel">
+    <p>AI and Machine Learning engineer, 21. Originally from Himachal Pradesh, currently based in Delhi. I hold a BCA from Himachal Pradesh University and am completing an Associate of Science in AI at Saras AI Institute, USA.</p>
+    <p>I build production-grade ML systems, publish research on agentic RAG architectures, and continuously push the boundaries of what intelligent systems can do. Most of what I know came from building things end to end and finding out where they break.</p>
+    <p>I'm looking for AI/ML internships and research-oriented junior roles — anywhere I can build real production systems and learn from a strong team.</p>
+    <h3>Education</h3>
+    <p class="muted"><strong>Associate of Science in Artificial Intelligence</strong><br>Saras AI Institute, USA · 2025 – 2027<br>
+    <em>Machine Learning, Applied Generative AI, Math for AI, Cloud AI deployment</em></p>
+    <p class="muted"><strong>Bachelor of Computer Applications (BCA)</strong><br>MCM DAV College · Himachal Pradesh University · Completed 2026</p>
+   </div>
+   <div class="panel">
+    <h3>Technical Skills</h3>
+    <div class="skill-group"><strong>Programming</strong>
+     <div class="tags"><span class="tag">Python</span><span class="tag">C/C++</span><span class="tag">SQL</span><span class="tag">Flask</span><span class="tag">FastAPI</span><span class="tag">HTML/CSS</span></div>
+    </div>
+    <div class="skill-group"><strong>AI / ML</strong>
+     <div class="tags"><span class="tag">PyTorch</span><span class="tag">Scikit-learn</span><span class="tag">HuggingFace</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span><span class="tag">NumPy</span><span class="tag">Pandas</span></div>
+    </div>
+    <div class="skill-group"><strong>Tools &amp; Cloud</strong>
+     <div class="tags"><span class="tag">Git</span><span class="tag">Docker</span><span class="tag">AWS</span><span class="tag">Snowflake</span><span class="tag">Streamlit</span><span class="tag">Jupyter</span><span class="tag">Google Colab</span></div>
+    </div>
+    <div class="skill-group"><strong>Focus Areas</strong>
+     <div class="tags"><span class="tag">RAG Systems</span><span class="tag">Agentic AI</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">NLP</span><span class="tag">Prompt Engineering</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ───────────────────────── JOURNEY ───────────────────────── -->
+<section class="section" id="journey">
+ <div class="container">
+  <div class="section-head">
+   <div><div class="kicker">04 · Journey</div><h2>How I got here.</h2></div>
+   <div class="section-intro">No formal industry role yet — everything below is self-directed work, coursework, and published research.</div>
+  </div>
+  <div class="panel timeline">
+   <div class="timeline-item">
+    <h3>Independent AI/ML Engineering</h3><small>2025 — Present</small>
+    <p class="muted">Built eight systems end to end across RAG, computer vision, agents, and data engineering — including a published-research assistant, a 94% accurate deepfake detector, and an hourly-automated Snowflake pipeline.</p>
+   </div>
+   <div class="timeline-item">
+    <h3>Published Research · Zenodo</h3><small>2026</small>
+    <p class="muted">Published <em>Moksh AI v3.0</em>, proposing an explicit agentic retrieval decision layer that lifted benchmark accuracy from 64% to 92% over a naive-retrieval baseline.</p>
+   </div>
+   <div class="timeline-item">
+    <h3>AS in Artificial Intelligence · Saras AI Institute, USA</h3><small>2025 — 2027 · In progress</small>
+    <p class="muted">Coursework in Machine Learning, Applied Generative AI, Math for AI, Data Engineering, and cloud AI deployment across AWS, Azure and GCP.</p>
+   </div>
+   <div class="timeline-item">
+    <h3>BCA · MCM DAV College, Himachal Pradesh University</h3><small>2023 — 2026 · Completed</small>
+    <p class="muted">Core CS foundations — data structures, DBMS, operating systems, computer networks, software engineering, and statistical methods.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ───────────────────────── ACHIEVEMENTS ───────────────────────── -->
+<section class="section" id="achievements">
+ <div class="container">
+  <div class="section-head"><div><div class="kicker">05 · Highlights</div><h2>What I'm proud of.</h2></div></div>
+  <div class="ach-grid">
+   <div class="panel"><div class="achievement"><div class="icon">📄</div><div>
+    <h3>Published Researcher at 21</h3>
+    <p class="muted">Agentic RAG research on Zenodo — 92% benchmark accuracy against a 64% baseline.</p>
+   </div></div></div>
+   <div class="panel"><div class="achievement"><div class="icon">◎</div><div>
+    <h3>94.05% Deepfake Detection</h3>
+    <p class="muted">ResNet-50 over 140,000 images, ROC-AUC 0.98, under 12ms inference per frame.</p>
+   </div></div></div>
+   <div class="panel"><div class="achievement"><div class="icon">⚡</div><div>
+    <h3>88.2% → 93.15% on FashionNet</h3>
+    <p class="muted">Nearly five points of accuracy recovered through systematic architectural tuning alone.</p>
+   </div></div></div>
+   <div class="panel"><div class="achievement"><div class="icon">🎓</div><div>
+    <h3>Two Degrees in Parallel</h3>
+    <p class="muted">Completed a BCA in India while studying AI at Saras AI Institute, USA.</p>
+   </div></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- ───────────────────────── WRITING ───────────────────────── -->
+<section class="section" id="writing">
+ <div class="container">
+  <div class="section-head">
+   <div><div class="kicker">06 · Writing</div><h2>Thinking out loud.</h2></div>
+   <div class="section-intro">Notes on what I'm building and what I'm reading, published on Hashnode.</div>
+  </div>
+  <div class="cards">
+
+   <article class="card">
+    <div class="post-cover"><img src="assets/blog-snowflake.png" alt="Snowflake"></div>
+    <div class="project-number">Data Engineering · Sep 2026</div>
+    <h3>Building an Automated Crisis Data Pipeline on Snowflake</h3>
+    <p class="muted">Merging live earthquake data with weather conditions to flag when rescue efforts could be complicated — plus the three things that actually broke along the way.</p>
+    <a class="card-link" href="https://mritunjaysharma05.hashnode.dev/building-an-automated-crisis-data-pipeline-on-snowflake-earthquakes-weather-and-what-broke-along-the-way" target="_blank" rel="noopener">Read article →</a>
+   </article>
+
+   <article class="card">
+    <div class="post-cover"><img src="assets/blog-rust.png" alt="Rust" class="fill"></div>
+    <div class="project-number">Systems / AI Infra</div>
+    <h3>Why Rust Is Quietly Taking Over AI Infrastructure</h3>
+    <p class="muted">I've been a Python person my whole ML journey — until I looked at where Rust already sits in the stack I use daily. Tokenizers, dataframes, agent runtimes: it's already there.</p>
+    <a class="card-link" href="https://mritunjaysharma05.hashnode.dev/why-rust-is-quietly-taking-over-ai-infrastructure-and-why-i-m-finally-learning-it" target="_blank" rel="noopener">Read article →</a>
+   </article>
+
+   <article class="card">
+    <div class="post-cover"><img src="assets/blog-gpt-astra.png" alt="GPT-6 Astra" class="fill"></div>
+    <div class="project-number">AI News</div>
+    <h3>GPT-6 Astra Just Dropped — Here's What Caught My Eye</h3>
+    <p class="muted">A quick take on what stood out most in the recent GPT-6 Astra release.</p>
+    <a class="card-link" href="https://mritunjaysharma05.hashnode.dev/gpt-6-astra-just-dropped-here-s-what-actually-caught-my-eye" target="_blank" rel="noopener">Read article →</a>
+   </article>
+
+  </div>
+ </div>
+</section>
+
+<!-- ───────────────────────── CONTACT ───────────────────────── -->
+<section class="section" id="contact">
+ <div class="container">
+  <div class="contact">
+   <div class="kicker" style="color:#aeb2ff">07 · Contact</div>
+   <h2>Let's build something useful.</h2>
+   <p>I'm actively looking for AI/ML internships and research collaborations. If you're building something interesting in AI — or want to compare notes on agentic RAG — I'd like to hear about it.</p>
+   <div class="contact-row">
+    <a class="btn contact-mail" href="mailto:mritunjaysharma080505@gmail.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mritunjay-sharma05/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a class="btn" href="https://github.com/mritunjaySharma05" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn" href="Mritunjay_Sharma_CV.pdf" download>Resume ↓</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>© 2026 Mritunjay Sharma · AI/ML Engineer</footer>
+</body>
+</html>
