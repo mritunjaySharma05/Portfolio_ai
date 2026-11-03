@@ -1,0 +1,4 @@
+# The v2 page is now the homepage. Keep the old /v2 paths working for any
+# link already shared, so they land on "/" instead of 404ing.
+/v2       /  301
+/v2.html  /  301
