@@ -79,6 +79,7 @@ h2{font-size:clamp(26px,4vw,31px);letter-spacing:-1px;margin:4px 0}
 .card p{margin:0}
 .tags{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}
 .tag{background:var(--soft);color:#4546a8;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:700}
+.tag.ongoing{background:#fff4e5;color:#9a5b00}
 .card-link{font-weight:800;color:var(--accent);font-size:13px;margin-top:auto}
 .card-link:hover{color:var(--accent2)}
 
@@ -211,7 +212,15 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
   <div class="cards">
 
    <article class="card">
-    <div class="project-number">01 / FEATURED · NLP / RAG</div>
+    <div class="project-number">01 / IN PROGRESS · LLM / SQL</div>
+    <h3>DataCopilot</h3>
+    <p class="muted">Saras AI capstone: ask questions about CSV files or SQL databases in plain English or Hinglish. The design rule is that the LLM only writes SQL and never calculates, while a validator checks every query for schema correctness and read-only safety before it runs. Being evaluated on the BIRD benchmark against an unvalidated baseline.</p>
+    <div class="tags"><span class="tag ongoing">Ongoing</span><span class="tag">Python</span><span class="tag">DuckDB</span><span class="tag">FastAPI</span><span class="tag">sqlglot</span></div>
+    <a class="card-link" href="https://github.com/mritunjaySharma05/datacopilot" target="_blank" rel="noopener">View GitHub →</a>
+   </article>
+
+   <article class="card">
+    <div class="project-number">02 / FEATURED · NLP / RAG</div>
     <h3>Moksh AI v3.0: Hybrid Agentic RAG</h3>
     <p class="muted">Agentic assistant that routes queries between FAISS vector memory, web search, or hybrid mode using temporal keyword detection and L2 confidence thresholds. Dual-LLM with Llama 3 + Gemini 2.0 Flash fallback. 92% on a 25-question benchmark, and the basis of my published paper.</p>
     <div class="tags"><span class="tag">Python</span><span class="tag">Llama 3</span><span class="tag">FAISS</span><span class="tag">Streamlit</span></div>
@@ -219,7 +228,7 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
    </article>
 
    <article class="card">
-    <div class="project-number">02 / COMPUTER VISION</div>
+    <div class="project-number">03 / COMPUTER VISION</div>
     <h3>Deepfake Face Detector</h3>
     <p class="muted">ResNet-50 binary classifier trained on 140,000 face images. 94.05% test accuracy, ROC-AUC 0.98. Mixed-precision training on an RTX 4060, with a Streamlit interface doing real-time image and video detection under 12ms per frame.</p>
     <div class="tags"><span class="tag">PyTorch</span><span class="tag">ResNet-50</span><span class="tag">OpenCV</span></div>
@@ -227,7 +236,7 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
    </article>
 
    <article class="card">
-    <div class="project-number">03 / DATA ENGINEERING</div>
+    <div class="project-number">04 / DATA ENGINEERING</div>
     <h3>Earthquake &amp; Weather Crisis Pipeline</h3>
     <p class="muted">Automated Snowflake platform merging live USGS earthquake data with Open-Meteo weather to flag when conditions could complicate rescue efforts. Hourly Tasks, MERGE-based dedup, data-quality checks, and a live Streamlit-in-Snowflake dashboard.</p>
     <div class="tags"><span class="tag">Snowflake</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Streamlit</span></div>
@@ -235,7 +244,7 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
    </article>
 
    <article class="card">
-    <div class="project-number">04 / AGENTS</div>
+    <div class="project-number">05 / AGENTS</div>
     <h3>FastMCP × PydanticAI Research Agent</h3>
     <p class="muted">Conversational ReAct research agent built with PydanticAI, connected to a FastMCP server for search, fetch, and note-taking tools. Pipelines findings through synthesis and PII screening, writing incrementally so partial results survive a mid-run failure.</p>
     <div class="tags"><span class="tag">PydanticAI</span><span class="tag">FastMCP</span><span class="tag">Gemini</span><span class="tag">SQLite</span></div>
@@ -243,7 +252,7 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
    </article>
 
    <article class="card">
-    <div class="project-number">05 / BACKEND · ML</div>
+    <div class="project-number">06 / BACKEND · ML</div>
     <h3>Customer Churn Prediction API</h3>
     <p class="muted">ML pipeline on the IBM Telco dataset: ROC-AUC 0.836, 80% accuracy. Flask REST API with batch scoring, data drift detection, and date-stamped model versioning for monthly retraining.</p>
     <div class="tags"><span class="tag">Flask</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span></div>
@@ -251,7 +260,7 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
    </article>
 
    <article class="card">
-    <div class="project-number">06 / GENERATIVE AI</div>
+    <div class="project-number">07 / GENERATIVE AI</div>
     <h3>AI Image Editor</h3>
     <p class="muted">Streamlit app for editing and organizing photos through natural language instead of Photoshop-style tools. Auto-captioning, typed-instruction edits, and semantic search over the library, all powered by Gemini.</p>
     <div class="tags"><span class="tag">Python</span><span class="tag">Gemini API</span><span class="tag">Embeddings</span></div>
@@ -259,7 +268,7 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
    </article>
 
    <article class="card">
-    <div class="project-number">07 / DEEP LEARNING</div>
+    <div class="project-number">08 / DEEP LEARNING</div>
     <h3>FashionNet</h3>
     <p class="muted">3-block CNN written from scratch in PyTorch for apparel classification. Pushed accuracy from 88.2% to 93.15% through BatchNorm, cosine LR scheduling, dropout, and label smoothing. Precision, Recall and F1 all at 0.93 across 10 classes.</p>
     <div class="tags"><span class="tag">PyTorch</span><span class="tag">CNN</span><span class="tag">Python</span></div>
