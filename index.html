@@ -28,6 +28,17 @@ img{max-width:100%}
 .logo span{color:var(--accent)}
 .navlinks{display:flex;gap:24px;font-size:14px;color:#475467}
 .navlinks a:hover{color:var(--accent)}
+/* mobile nav: hidden on desktop, enabled in the max-width:850px block below */
+.navtoggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;
+  padding:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);
+  color:var(--text);font-size:18px;line-height:1;cursor:pointer;font-family:inherit;flex-shrink:0}
+.navtoggle:hover{color:var(--accent)}
+.mobilemenu{display:none;position:absolute;top:100%;left:0;right:0;
+  background:rgba(245,247,251,.97);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(230,233,239,.8)}
+.mobilemenu a{display:block;padding:15px 0;font-size:15px;color:#475467;border-bottom:1px solid var(--line)}
+.mobilemenu a:last-child{border-bottom:0}
+.mobilemenu a:hover{color:var(--accent)}
 
 /* hero */
 .hero{padding:52px 0 36px}
@@ -143,7 +154,11 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
 @media(max-width:850px){
  .hero-grid,.about-grid{grid-template-columns:minmax(0,1fr)}
  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+ /* OLD: .navlinks{display:none} */
+ /* navlinks still hidden on mobile, but now reachable through the hamburger menu */
  .navlinks{display:none}
+ .navtoggle{display:inline-flex}
+ .mobilemenu.open{display:block}
 }
 @media(max-width:560px){
  .hero{padding-top:45px}
@@ -159,6 +174,13 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
  <div class="container nav-inner">
   <a class="logo" href="#">MRITUNJAY<span>.</span></a>
   <div class="navlinks">
+   <a href="#projects">Projects</a><a href="#research">Research</a><a href="#about">About</a>
+   <a href="#journey">Journey</a><a href="#writing">Writing</a><a href="#contact">Contact</a>
+  </div>
+  <button class="navtoggle" id="navtoggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobilemenu">☰</button>
+ </div>
+ <div class="mobilemenu" id="mobilemenu">
+  <div class="container">
    <a href="#projects">Projects</a><a href="#research">Research</a><a href="#about">About</a>
    <a href="#journey">Journey</a><a href="#writing">Writing</a><a href="#contact">Contact</a>
   </div>
@@ -471,5 +493,40 @@ footer{text-align:center;color:var(--muted);padding:30px 0;font-size:14px}
 
 <!-- OLD: <footer>© 2026 Mritunjay Sharma · AI/ML Engineer</footer> -->
 <footer>© 2026 Mritunjay Sharma · AI Engineer</footer>
+
+<script>
+(function(){
+  var btn  = document.getElementById('navtoggle');
+  var menu = document.getElementById('mobilemenu');
+  if(!btn || !menu) return;
+
+  function setOpen(open){
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.textContent = open ? '✕' : '☰';
+  }
+
+  btn.addEventListener('click', function(){
+    setOpen(!menu.classList.contains('open'));
+  });
+
+  // tapping a link closes the menu; the href handles the scroll
+  menu.addEventListener('click', function(e){
+    if(e.target.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && menu.classList.contains('open')){
+      setOpen(false);
+      btn.focus();
+    }
+  });
+
+  // reset state if the viewport grows back to desktop
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 850 && menu.classList.contains('open')) setOpen(false);
+  });
+})();
+</script>
 </body>
 </html>
